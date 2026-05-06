@@ -1,356 +1,515 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { Header } from '@/components/header';
-import { destinations } from '@/lib/destination-data';
+import { INDIA_DESTINATIONS } from '@/lib/india-destinations';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Plus, X, Download, MapPin, Calendar, Users } from 'lucide-react';
+import { Plus, Trash2, Download, MapPin, Calendar, DollarSign, AlertCircle, TrendingUp } from 'lucide-react';
 
-interface ItineraryItem {
+type CostTier = 'budget' | 'mid' | 'luxury';
+
+interface TripDestination {
   id: string;
-  day: number;
-  destination: string;
-  activity: string;
+  days: number;
+  costTier: CostTier;
 }
 
-interface ItineraryPlan {
-  title: string;
-  destinations: string[];
-  duration: number;
-  travelers: number;
-  items: ItineraryItem[];
+interface TripCalculation {
+  destination: (typeof INDIA_DESTINATIONS)[0];
+  days: number;
+  costTier: CostTier;
+  totalCost: number;
+  costBreakdown: {
+    accommodation: number;
+    food: number;
+    transport: number;
+    activities: number;
+  };
 }
 
 export default function ItineraryPage() {
-  const [plan, setPlan] = useState<ItineraryPlan>({
-    title: 'My Trip',
-    destinations: [],
-    duration: 7,
-    travelers: 1,
-    items: []
-  });
+  const [tripName, setTripName] = useState('My Indian Adventure');
+  const [selectedDestinations, setSelectedDestinations] = useState<TripDestination[]>([]);
+  const [budgetMode, setBudgetMode] = useState<'build' | 'search'>('build');
+  const [totalBudget, setTotalBudget] = useState<number | string>('');
+  const [suggestedDestinations, setSuggestedDestinations] = useState<TripCalculation[]>([]);
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
-  const [selectedDestination, setSelectedDestination] = useState('');
-  const [selectedDay, setSelectedDay] = useState(1);
-  const [activity, setActivity] = useState('');
+  // Calculate trip costs
+  const tripCalculations = useMemo(() => {
+    return selectedDestinations
+      .map(sd => {
+        const destination = INDIA_DESTINATIONS.find(d => d.id === sd.id);
+        if (!destination) return null;
 
-  const addDestination = (destId: string) => {
-    const dest = destinations.find(d => d.id === destId);
-    if (dest && !plan.destinations.includes(destId)) {
-      setPlan(prev => ({
-        ...prev,
-        destinations: [...prev.destinations, destId]
-      }));
-    }
-  };
-
-  const removeDestination = (destId: string) => {
-    setPlan(prev => ({
-      ...prev,
-      destinations: prev.destinations.filter(d => d !== destId),
-      items: prev.items.filter(item => {
-        const dest = destinations.find(d => d.id === destId);
-        return dest?.name !== item.destination;
-      })
-    }));
-  };
-
-  const addActivity = () => {
-    if (activity.trim() && selectedDestination) {
-      const dest = destinations.find(d => d.id === selectedDestination);
-      if (dest) {
-        const newItem: ItineraryItem = {
-          id: Date.now().toString(),
-          day: selectedDay,
-          destination: dest.name,
-          activity: activity
+        const costData = destination.costPerDay[sd.costTier];
+        return {
+          destination,
+          days: sd.days,
+          costTier: sd.costTier,
+          totalCost: costData.total * sd.days,
+          costBreakdown: {
+            accommodation: costData.accommodation * sd.days,
+            food: costData.food * sd.days,
+            transport: costData.transport * sd.days,
+            activities: costData.activities * sd.days,
+          },
         };
-        setPlan(prev => ({
-          ...prev,
-          items: [...prev.items, newItem]
-        }));
-        setActivity('');
+      })
+      .filter((item): item is TripCalculation => item !== null);
+  }, [selectedDestinations]);
+
+  const totalTripCost = useMemo(() => {
+    return tripCalculations.reduce((sum, calc) => sum + calc.totalCost, 0);
+  }, [tripCalculations]);
+
+  const totalTripDays = useMemo(() => {
+    return selectedDestinations.reduce((sum, sd) => sum + sd.days, 0);
+  }, [selectedDestinations]);
+
+  // Budget-based recommendations
+  const handleBudgetSearch = () => {
+    if (!totalBudget || parseInt(totalBudget as string) <= 0) {
+      alert('Please enter a valid budget amount');
+      return;
+    }
+
+    const budget = parseInt(totalBudget as string);
+    const recommendations: TripCalculation[] = [];
+    let remainingBudget = budget;
+
+    // Sort destinations by popularity (rating + reviews)
+    const sortedDests = [...INDIA_DESTINATIONS].sort(
+      (a, b) => (b.rating * b.reviews) - (a.rating * a.reviews)
+    );
+
+    for (const dest of sortedDests) {
+      if (remainingBudget <= 0) break;
+
+      // Try different combinations
+      const tiers: CostTier[] = ['budget', 'mid', 'luxury'];
+      for (const tier of tiers) {
+        const costPerDay = dest.costPerDay[tier].total;
+        const maxDays = Math.floor(remainingBudget / costPerDay);
+
+        if (maxDays > 0) {
+          const daysToAdd = Math.min(maxDays, 5); // Max 5 days per destination
+          const tripCost = costPerDay * daysToAdd;
+
+          if (tripCost <= remainingBudget) {
+            const costData = dest.costPerDay[tier];
+            recommendations.push({
+              destination: dest,
+              days: daysToAdd,
+              costTier: tier,
+              totalCost: tripCost,
+              costBreakdown: {
+                accommodation: costData.accommodation * daysToAdd,
+                food: costData.food * daysToAdd,
+                transport: costData.transport * daysToAdd,
+                activities: costData.activities * daysToAdd,
+              },
+            });
+            remainingBudget -= tripCost;
+            break;
+          }
+        }
       }
     }
+
+    setSuggestedDestinations(recommendations);
+    setSearchPerformed(true);
   };
 
-  const removeActivity = (itemId: string) => {
-    setPlan(prev => ({
-      ...prev,
-      items: prev.items.filter(item => item.id !== itemId)
-    }));
+  const addDestinationFromSuggestion = (calc: TripCalculation) => {
+    setSelectedDestinations([
+      ...selectedDestinations,
+      {
+        id: calc.destination.id,
+        days: calc.days,
+        costTier: calc.costTier,
+      },
+    ]);
+    setSuggestedDestinations(suggestedDestinations.filter(s => s.destination.id !== calc.destination.id));
   };
 
-  const getActivitiesByDay = (day: number) => {
-    return plan.items.filter(item => item.day === day);
+  const addDestination = (destinationId: string) => {
+    if (!selectedDestinations.find(sd => sd.id === destinationId)) {
+      setSelectedDestinations([
+        ...selectedDestinations,
+        { id: destinationId, days: 3, costTier: 'budget' },
+      ]);
+    }
+  };
+
+  const updateDestination = (destinationId: string, field: string, value: any) => {
+    setSelectedDestinations(
+      selectedDestinations.map(sd =>
+        sd.id === destinationId ? { ...sd, [field]: value } : sd
+      )
+    );
+  };
+
+  const removeDestination = (destinationId: string) => {
+    setSelectedDestinations(selectedDestinations.filter(sd => sd.id !== destinationId));
   };
 
   const downloadItinerary = () => {
-    const content = `
-TripSync Itinerary: ${plan.title}
-=====================================
+    let content = `TripSync Itinerary - ${tripName}\n`;
+    content += `Generated: ${new Date().toLocaleDateString()}\n`;
+    content += `Total Days: ${totalTripDays}\n`;
+    content += `Total Cost: ₹${totalTripCost.toLocaleString()}\n`;
+    content += `\n`;
+    content += `DESTINATIONS:\n`;
+    content += `${'='.repeat(80)}\n\n`;
 
-Duration: ${plan.duration} days
-Number of Travelers: ${plan.travelers}
-Destinations: ${plan.destinations.map(d => destinations.find(dest => dest.id === d)?.name).join(', ')}
+    tripCalculations.forEach((calc, index) => {
+      content += `${index + 1}. ${calc.destination.name} (${calc.destination.state})\n`;
+      content += `   Days: ${calc.days}\n`;
+      content += `   Cost Tier: ${calc.costTier.charAt(0).toUpperCase() + calc.costTier.slice(1)}\n`;
+      content += `   Total Cost: ₹${calc.totalCost.toLocaleString()}\n`;
+      content += `   Breakdown:\n`;
+      content += `   - Accommodation: ₹${calc.costBreakdown.accommodation.toLocaleString()}\n`;
+      content += `   - Food: ₹${calc.costBreakdown.food.toLocaleString()}\n`;
+      content += `   - Transport: ₹${calc.costBreakdown.transport.toLocaleString()}\n`;
+      content += `   - Activities: ₹${calc.costBreakdown.activities.toLocaleString()}\n`;
+      content += `   Best Time: ${calc.destination.bestTime}\n`;
+      content += `   Top Attractions: ${calc.destination.attractions.slice(0, 3).join(', ')}\n\n`;
+    });
 
-Daily Itinerary:
-${Array.from({ length: plan.duration }, (_, i) => {
-  const day = i + 1;
-  const dayActivities = getActivitiesByDay(day);
-  return `
-Day ${day}:
-${dayActivities.length > 0 
-  ? dayActivities.map(item => `  - ${item.destination}: ${item.activity}`).join('\n')
-  : '  - No activities planned'
-}`;
-}).join('\n')}
+    content += `${'='.repeat(80)}\n`;
+    content += `TRIP SUMMARY:\n`;
+    content += `Total Duration: ${totalTripDays} days\n`;
+    content += `Total Cost: ₹${totalTripCost.toLocaleString()}\n`;
+    content += `Average Daily Cost: ₹${Math.round(totalTripCost / totalTripDays).toLocaleString()}\n`;
 
-Plan your trip at TripSync!
-    `;
-    
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
-    element.setAttribute('download', `${plan.title.replace(/\s+/g, '-')}-itinerary.txt`);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${tripName.replace(/\s+/g, '-')}-itinerary.txt`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
   };
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <main className="flex-1 py-8 px-4">
-        <div className="container mx-auto max-w-6xl">
-          {/* Page Header */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-foreground mb-2">Plan Your Itinerary</h1>
-            <p className="text-muted-foreground">
-              Create a personalized trip plan with daily activities and destinations
-            </p>
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="bg-gradient-hero py-12 px-4 text-white">
+          <div className="container mx-auto max-w-6xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Plan Your Perfect Trip</h1>
+            <p className="text-lg text-white/90 max-w-2xl">Create custom itineraries with real-time cost calculations</p>
           </div>
+        </section>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Left Column - Planning Tools */}
-            <div className="lg:col-span-1">
-              <Card className="sticky top-20">
+        <div className="container mx-auto max-w-6xl px-4 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left Panel - Trip Builder */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Trip Name */}
+              <Card className="border-0">
                 <CardHeader>
-                  <CardTitle>Trip Details</CardTitle>
+                  <CardTitle>Trip Name</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Trip Name</label>
-                    <Input
-                      value={plan.title}
-                      onChange={(e) => setPlan(prev => ({ ...prev, title: e.target.value }))}
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Duration (days)</label>
-                    <Input
-                      type="number"
-                      min="1"
-                      max="30"
-                      value={plan.duration}
-                      onChange={(e) => setPlan(prev => ({ ...prev, duration: parseInt(e.target.value) }))}
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Number of Travelers</label>
-                    <Input
-                      type="number"
-                      min="1"
-                      max="20"
-                      value={plan.travelers}
-                      onChange={(e) => setPlan(prev => ({ ...prev, travelers: parseInt(e.target.value) }))}
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <Button onClick={downloadItinerary} className="w-full bg-primary">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Itinerary
-                  </Button>
+                <CardContent>
+                  <Input
+                    value={tripName}
+                    onChange={(e) => setTripName(e.target.value)}
+                    placeholder="Enter trip name"
+                    className="bg-background"
+                  />
                 </CardContent>
               </Card>
-            </div>
 
-            {/* Right Column - Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Select Destinations */}
-              <Card>
+              {/* Mode Selection */}
+              <Card className="border-0">
                 <CardHeader>
-                  <CardTitle>Select Destinations</CardTitle>
+                  <CardTitle>How do you want to plan?</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Add Destination</label>
-                    <select
-                      value={selectedDestination}
-                      onChange={(e) => setSelectedDestination(e.target.value)}
-                      className="w-full px-3 py-2 mt-1 border border-border rounded-md bg-background text-foreground"
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
+                    <button
+                      onClick={() => {
+                        setBudgetMode('build');
+                        setSuggestedDestinations([]);
+                        setSearchPerformed(false);
+                      }}
+                      className={`p-4 rounded-lg border-2 transition-all ${
+                        budgetMode === 'build'
+                          ? 'border-primary bg-primary/10'
+                          : 'border-muted hover:border-primary/50'
+                      }`}
                     >
-                      <option value="">Choose a destination...</option>
-                      {destinations.map(d => (
-                        <option key={d.id} value={d.id}>
-                          {d.name} - {d.region}
-                        </option>
-                      ))}
-                    </select>
+                      <div className="text-2xl mb-2">🏗️</div>
+                      <p className="font-semibold text-foreground">Build Custom Trip</p>
+                      <p className="text-xs text-muted-foreground mt-1">Select destinations & costs</p>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setBudgetMode('search');
+                        setSelectedDestinations([]);
+                      }}
+                      className={`p-4 rounded-lg border-2 transition-all ${
+                        budgetMode === 'search'
+                          ? 'border-primary bg-primary/10'
+                          : 'border-muted hover:border-primary/50'
+                      }`}
+                    >
+                      <div className="text-2xl mb-2">🎯</div>
+                      <p className="font-semibold text-foreground">Budget Search</p>
+                      <p className="text-xs text-muted-foreground mt-1">Find destinations by budget</p>
+                    </button>
                   </div>
-
-                  <Button
-                    onClick={() => {
-                      addDestination(selectedDestination);
-                      setSelectedDestination('');
-                    }}
-                    disabled={!selectedDestination}
-                    className="w-full"
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add Destination
-                  </Button>
-
-                  {plan.destinations.length > 0 && (
-                    <div className="pt-4 border-t border-border">
-                      <h4 className="font-medium text-foreground mb-3">Selected Destinations:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {plan.destinations.map(destId => {
-                          const dest = destinations.find(d => d.id === destId);
-                          return (
-                            <Badge key={destId} className="pr-1">
-                              {dest?.name}
-                              <button
-                                onClick={() => removeDestination(destId)}
-                                className="ml-2 hover:text-destructive"
-                              >
-                                <X className="w-3 h-3" />
-                              </button>
-                            </Badge>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
                 </CardContent>
               </Card>
 
-              {/* Add Activities */}
-              {plan.destinations.length > 0 && (
-                <Card>
+              {budgetMode === 'build' ? (
+                <>
+                  {/* Add Destination */}
+                  <Card className="border-0">
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Plus className="h-5 w-5" />
+                        Add Destinations
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-96 overflow-y-auto">
+                        {INDIA_DESTINATIONS.filter(
+                          d => !selectedDestinations.find(sd => sd.id === d.id)
+                        ).map(dest => (
+                          <button
+                            key={dest.id}
+                            onClick={() => addDestination(dest.id)}
+                            className="text-left p-3 rounded-lg border border-muted hover:border-primary hover:bg-muted/50 transition-all"
+                          >
+                            <p className="font-semibold text-sm text-foreground">{dest.name}</p>
+                            <p className="text-xs text-muted-foreground">{dest.state}</p>
+                            <p className="text-xs text-primary mt-1">₹{dest.costPerDay.budget.total}/day</p>
+                          </button>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Selected Destinations */}
+                  {selectedDestinations.length > 0 && (
+                    <Card className="border-0">
+                      <CardHeader>
+                        <CardTitle>Your Selected Destinations</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        {tripCalculations.map((calc, i) => (
+                          <div key={i} className="p-4 border border-muted rounded-lg space-y-3">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <p className="font-semibold text-foreground">{calc.destination.name}</p>
+                                <p className="text-sm text-muted-foreground flex items-center gap-1">
+                                  <MapPin className="h-3 w-3" />
+                                  {calc.destination.state}
+                                </p>
+                              </div>
+                              <button
+                                onClick={() => removeDestination(calc.destination.id)}
+                                className="p-2 hover:bg-muted rounded-md transition"
+                              >
+                                <Trash2 className="h-4 w-4 text-destructive" />
+                              </button>
+                            </div>
+
+                            <div className="grid grid-cols-3 gap-3">
+                              <div>
+                                <label className="text-xs font-medium text-muted-foreground">Days</label>
+                                <input
+                                  type="number"
+                                  min="1"
+                                  max="30"
+                                  value={calc.days}
+                                  onChange={(e) => updateDestination(calc.destination.id, 'days', parseInt(e.target.value) || 1)}
+                                  className="w-full px-2 py-1 mt-1 border border-input rounded-md text-sm"
+                                />
+                              </div>
+                              <div>
+                                <label className="text-xs font-medium text-muted-foreground">Tier</label>
+                                <select
+                                  value={calc.costTier}
+                                  onChange={(e) => updateDestination(calc.destination.id, 'costTier', e.target.value)}
+                                  className="w-full px-2 py-1 mt-1 border border-input rounded-md text-sm"
+                                >
+                                  <option value="budget">Budget</option>
+                                  <option value="mid">Mid-Range</option>
+                                  <option value="luxury">Luxury</option>
+                                </select>
+                              </div>
+                              <div>
+                                <label className="text-xs font-medium text-muted-foreground">Total Cost</label>
+                                <div className="text-lg font-bold text-primary mt-1">
+                                  ₹{calc.totalCost.toLocaleString()}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </CardContent>
+                    </Card>
+                  )}
+                </>
+              ) : (
+                // Budget Search Mode
+                <Card className="border-0">
                   <CardHeader>
-                    <CardTitle>Add Activities</CardTitle>
+                    <CardTitle>Search by Budget</CardTitle>
+                    <CardDescription>Enter your total budget and we&apos;ll suggest the best destinations</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm font-medium text-foreground">Destination</label>
-                        <select
-                          value={selectedDestination}
-                          onChange={(e) => setSelectedDestination(e.target.value)}
-                          className="w-full px-3 py-2 mt-1 border border-border rounded-md bg-background text-foreground"
-                        >
-                          <option value="">Choose destination...</option>
-                          {plan.destinations.map(destId => {
-                            const dest = destinations.find(d => d.id === destId);
-                            return (
-                              <option key={destId} value={destId}>
-                                {dest?.name}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="text-sm font-medium text-foreground">Day</label>
-                        <select
-                          value={selectedDay}
-                          onChange={(e) => setSelectedDay(parseInt(e.target.value))}
-                          className="w-full px-3 py-2 mt-1 border border-border rounded-md bg-background text-foreground"
-                        >
-                          {Array.from({ length: plan.duration }, (_, i) => i + 1).map(day => (
-                            <option key={day} value={day}>
-                              Day {day}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
                     <div>
-                      <label className="text-sm font-medium text-foreground">Activity</label>
-                      <Input
-                        value={activity}
-                        onChange={(e) => setActivity(e.target.value)}
-                        placeholder="e.g., Visit Taj Mahal, Explore local markets"
-                        className="mt-1"
-                        onKeyPress={(e) => e.key === 'Enter' && addActivity()}
-                      />
+                      <label className="text-sm font-medium">Total Budget (₹)</label>
+                      <div className="flex gap-2 mt-2">
+                        <Input
+                          type="number"
+                          value={totalBudget}
+                          onChange={(e) => setTotalBudget(e.target.value)}
+                          placeholder="Enter total budget"
+                          className="bg-background"
+                        />
+                        <Button onClick={handleBudgetSearch} className="bg-primary hover:bg-primary/90">
+                          <TrendingUp className="h-4 w-4 mr-2" />
+                          Search
+                        </Button>
+                      </div>
                     </div>
 
-                    <Button
-                      onClick={addActivity}
-                      disabled={!activity.trim() || !selectedDestination}
-                      className="w-full"
-                    >
-                      <Plus className="w-4 h-4 mr-2" />
-                      Add Activity
-                    </Button>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Itinerary Timeline */}
-              {plan.items.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Your Itinerary</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    {Array.from({ length: plan.duration }, (_, i) => i + 1).map(day => {
-                      const dayActivities = getActivitiesByDay(day);
-                      return (
-                        <div key={day}>
-                          <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-primary" />
-                            Day {day}
-                          </h4>
-                          <div className="space-y-2 ml-6 border-l-2 border-primary/30 pl-4">
-                            {dayActivities.length > 0 ? (
-                              dayActivities.map(item => (
-                                <div key={item.id} className="flex items-start justify-between gap-3 p-3 rounded-lg bg-muted/30">
-                                  <div>
-                                    <p className="font-medium text-foreground">{item.destination}</p>
-                                    <p className="text-sm text-muted-foreground">{item.activity}</p>
-                                  </div>
-                                  <button
-                                    onClick={() => removeActivity(item.id)}
-                                    className="text-muted-foreground hover:text-destructive transition-colors"
-                                  >
-                                    <X className="w-4 h-4" />
-                                  </button>
-                                </div>
-                              ))
-                            ) : (
-                              <p className="text-sm text-muted-foreground italic">No activities planned</p>
-                            )}
+                    {searchPerformed && suggestedDestinations.length > 0 && (
+                      <div className="space-y-3">
+                        <p className="text-sm text-muted-foreground">
+                          Found {suggestedDestinations.length} destination combinations
+                        </p>
+                        {suggestedDestinations.map((calc, i) => (
+                          <div
+                            key={i}
+                            className="p-4 border border-muted rounded-lg flex items-center justify-between hover:bg-muted/50 transition"
+                          >
+                            <div>
+                              <p className="font-semibold text-foreground">{calc.destination.name}</p>
+                              <p className="text-sm text-muted-foreground">
+                                {calc.days} days • {calc.costTier} tier • ₹{calc.totalCost.toLocaleString()}
+                              </p>
+                            </div>
+                            <Button
+                              onClick={() => addDestinationFromSuggestion(calc)}
+                              size="sm"
+                              className="bg-primary hover:bg-primary/90"
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
                           </div>
-                        </div>
-                      );
-                    })}
+                        ))}
+                      </div>
+                    )}
+
+                    {searchPerformed && suggestedDestinations.length === 0 && selectedDestinations.length === 0 && (
+                      <div className="p-4 border border-muted rounded-lg bg-muted/30">
+                        <p className="text-sm text-muted-foreground text-center">
+                          No perfect matches found. Try adjusting your budget.
+                        </p>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               )}
+            </div>
+
+            {/* Right Panel - Summary */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24 space-y-6">
+                {/* Trip Summary */}
+                <Card className="border-0 bg-gradient-to-br from-primary/10 to-accent/10">
+                  <CardHeader>
+                    <CardTitle>Trip Summary</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Total Destinations</p>
+                      <p className="text-3xl font-bold text-foreground">{selectedDestinations.length}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Total Days</p>
+                      <p className="text-3xl font-bold text-foreground">{totalTripDays}</p>
+                    </div>
+                    <div className="pt-4 border-t border-border">
+                      <p className="text-sm text-muted-foreground">Total Cost</p>
+                      <p className="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        ₹{totalTripCost.toLocaleString()}
+                      </p>
+                      {totalTripDays > 0 && (
+                        <p className="text-xs text-muted-foreground mt-2">
+                          ₹{Math.round(totalTripCost / totalTripDays).toLocaleString()} per day
+                        </p>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Cost Breakdown */}
+                {tripCalculations.length > 0 && (
+                  <Card className="border-0">
+                    <CardHeader>
+                      <CardTitle className="text-lg">Cost Breakdown</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex items-center justify-between py-2 border-b border-border">
+                        <span className="text-sm">🏨 Accommodation</span>
+                        <span className="font-semibold">₹{tripCalculations.reduce((s, c) => s + c.costBreakdown.accommodation, 0).toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center justify-between py-2 border-b border-border">
+                        <span className="text-sm">🍽️ Food</span>
+                        <span className="font-semibold">₹{tripCalculations.reduce((s, c) => s + c.costBreakdown.food, 0).toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center justify-between py-2 border-b border-border">
+                        <span className="text-sm">🚌 Transport</span>
+                        <span className="font-semibold">₹{tripCalculations.reduce((s, c) => s + c.costBreakdown.transport, 0).toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center justify-between py-2">
+                        <span className="text-sm">🎫 Activities</span>
+                        <span className="font-semibold">₹{tripCalculations.reduce((s, c) => s + c.costBreakdown.activities, 0).toLocaleString()}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Action Buttons */}
+                {selectedDestinations.length > 0 && (
+                  <div className="space-y-3">
+                    <Button onClick={downloadItinerary} className="w-full bg-primary hover:bg-primary/90">
+                      <Download className="h-4 w-4 mr-2" />
+                      Download Itinerary
+                    </Button>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href="/community">Share & Get Tips</Link>
+                    </Button>
+                  </div>
+                )}
+
+                {selectedDestinations.length === 0 && budgetMode === 'build' && (
+                  <Card className="border-0 bg-muted/30">
+                    <CardContent className="p-4 text-center">
+                      <AlertCircle className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+                      <p className="text-sm text-muted-foreground">
+                        Add destinations to get started with your trip planning
+                      </p>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             </div>
           </div>
         </div>

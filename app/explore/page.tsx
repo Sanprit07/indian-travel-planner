@@ -1,150 +1,284 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Header } from '@/components/header';
-import { DestinationCard } from '@/components/destination-card';
-import { destinations, getAllRegions, searchDestinations } from '@/lib/destination-data';
+import { INDIA_DESTINATIONS } from '@/lib/india-destinations';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
-import { Search, X } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { MapPin, DollarSign, Search, Star, Calendar } from 'lucide-react';
+
+const COST_RANGES = [
+  { label: 'Budget (₹0-500)', min: 0, max: 500 },
+  { label: 'Mid-Range (₹500-1000)', min: 500, max: 1000 },
+  { label: 'Luxury (₹1000+)', min: 1000, max: Infinity },
+];
+
+const STATES = Array.from(new Set(INDIA_DESTINATIONS.map(d => d.state))).sort();
 
 export default function ExplorePage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
-  const [maxBudget, setMaxBudget] = useState<number>(50000);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [selectedCostRange, setSelectedCostRange] = useState('');
+  const [minRating, setMinRating] = useState(0);
+  const [sortBy, setSortBy] = useState('rating');
 
-  const regions = getAllRegions();
-
-  // Filter and search destinations
   const filteredDestinations = useMemo(() => {
-    let results = destinations;
+    let results = INDIA_DESTINATIONS;
 
-    // Apply search
-    if (searchQuery) {
-      results = searchDestinations(searchQuery);
+    // Search filter
+    if (searchTerm) {
+      results = results.filter(d =>
+        d.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        d.state.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        d.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     }
 
-    // Apply region filter
-    if (selectedRegion) {
-      results = results.filter(d => d.region === selectedRegion);
+    // State filter
+    if (selectedState) {
+      results = results.filter(d => d.state === selectedState);
     }
 
-    // Apply budget filter
-    results = results.filter(d => d.budget.low <= maxBudget);
+    // Cost range filter
+    if (selectedCostRange) {
+      const range = COST_RANGES.find(r => r.label === selectedCostRange);
+      if (range) {
+        results = results.filter(d => {
+          const cost = d.costPerDay.budget.total;
+          return cost >= range.min && cost < range.max;
+        });
+      }
+    }
+
+    // Rating filter
+    if (minRating > 0) {
+      results = results.filter(d => d.rating >= minRating);
+    }
+
+    // Sort
+    results.sort((a, b) => {
+      switch (sortBy) {
+        case 'rating':
+          return b.rating - a.rating;
+        case 'price-low':
+          return a.costPerDay.budget.total - b.costPerDay.budget.total;
+        case 'price-high':
+          return b.costPerDay.budget.total - a.costPerDay.budget.total;
+        case 'reviews':
+          return b.reviews - a.reviews;
+        default:
+          return 0;
+      }
+    });
 
     return results;
-  }, [searchQuery, selectedRegion, maxBudget]);
+  }, [searchTerm, selectedState, selectedCostRange, minRating, sortBy]);
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <main className="flex-1 py-8 px-4">
-        <div className="container mx-auto max-w-7xl">
-          {/* Page Header */}
-          <div className="mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-2">Explore Destinations</h1>
-            <p className="text-muted-foreground">
-              Discover {filteredDestinations.length} amazing destinations across India
-            </p>
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="bg-gradient-hero py-12 px-4 text-white">
+          <div className="container mx-auto max-w-6xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Explore Indian Destinations</h1>
+            <p className="text-lg text-white/90 max-w-2xl">Discover {INDIA_DESTINATIONS.length}+ amazing places across all Indian states</p>
           </div>
+        </section>
 
-          <div className="grid lg:grid-cols-4 gap-8">
-            {/* Sidebar Filters */}
+        <div className="container mx-auto max-w-6xl px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Filters Sidebar */}
             <div className="lg:col-span-1">
-              <Card className="p-6 space-y-6 sticky top-20">
+              <div className="sticky top-4 space-y-6 bg-card p-6 rounded-lg border">
                 <div>
-                  <h3 className="font-semibold mb-3 text-foreground">Search</h3>
+                  <h3 className="font-bold text-lg mb-4 text-foreground">Filters</h3>
+                </div>
+
+                {/* Search */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Search</label>
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                     <Input
                       placeholder="Search destinations..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-9 bg-background"
                     />
                   </div>
                 </div>
 
-                {/* Region Filter */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-foreground">Region</h3>
-                  <div className="space-y-2">
-                    <Button
-                      variant={selectedRegion === null ? 'default' : 'ghost'}
-                      className="w-full justify-start"
-                      onClick={() => setSelectedRegion(null)}
-                    >
-                      All Regions
-                    </Button>
-                    {regions.map((region) => (
-                      <Button
-                        key={region}
-                        variant={selectedRegion === region ? 'default' : 'ghost'}
-                        className="w-full justify-start"
-                        onClick={() => setSelectedRegion(region)}
-                      >
-                        {region}
-                      </Button>
+                {/* State Filter */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">State</label>
+                  <select
+                    value={selectedState}
+                    onChange={(e) => setSelectedState(e.target.value)}
+                    className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
+                  >
+                    <option value="">All States</option>
+                    {STATES.map(state => (
+                      <option key={state} value={state}>{state}</option>
                     ))}
-                  </div>
+                  </select>
                 </div>
 
                 {/* Budget Filter */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-foreground">Budget Per Day</h3>
-                  <div className="space-y-3">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Budget</label>
+                  <select
+                    value={selectedCostRange}
+                    onChange={(e) => setSelectedCostRange(e.target.value)}
+                    className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
+                  >
+                    <option value="">All Budgets</option>
+                    {COST_RANGES.map(range => (
+                      <option key={range.label} value={range.label}>{range.label}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Rating Filter */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Minimum Rating</label>
+                  <div className="flex items-center gap-2">
                     <input
                       type="range"
-                      min="5000"
-                      max="50000"
-                      step="5000"
-                      value={maxBudget}
-                      onChange={(e) => setMaxBudget(Number(e.target.value))}
-                      className="w-full"
+                      min="0"
+                      max="5"
+                      step="0.5"
+                      value={minRating}
+                      onChange={(e) => setMinRating(parseFloat(e.target.value))}
+                      className="flex-1"
                     />
-                    <div className="text-sm text-muted-foreground">
-                      Up to ₹{maxBudget.toLocaleString()}
-                    </div>
+                    <span className="text-sm font-medium min-w-8">{minRating.toFixed(1)}</span>
                   </div>
                 </div>
 
+                {/* Sort */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Sort By</label>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
+                  >
+                    <option value="rating">Highest Rated</option>
+                    <option value="reviews">Most Reviews</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                  </select>
+                </div>
+
                 {/* Clear Filters */}
-                {(searchQuery || selectedRegion || maxBudget !== 50000) && (
+                {(searchTerm || selectedState || selectedCostRange || minRating > 0) && (
                   <Button
+                    onClick={() => {
+                      setSearchTerm('');
+                      setSelectedState('');
+                      setSelectedCostRange('');
+                      setMinRating(0);
+                    }}
                     variant="outline"
                     className="w-full"
-                    onClick={() => {
-                      setSearchQuery('');
-                      setSelectedRegion(null);
-                      setMaxBudget(50000);
-                    }}
                   >
-                    <X className="w-4 h-4 mr-2" />
                     Clear Filters
                   </Button>
                 )}
-              </Card>
+              </div>
             </div>
 
-            {/* Results Grid */}
+            {/* Results */}
             <div className="lg:col-span-3">
-              {filteredDestinations.length > 0 ? (
-                <div className="grid md:grid-cols-2 gap-6">
-                  {filteredDestinations.map((destination) => (
-                    <DestinationCard
-                      key={destination.id}
-                      destination={destination}
-                    />
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="text-2xl font-bold text-foreground">
+                  {filteredDestinations.length} Destinations Found
+                </h2>
+              </div>
+
+              {filteredDestinations.length === 0 ? (
+                <Card className="border-0">
+                  <CardContent className="py-12 text-center">
+                    <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4 opacity-50" />
+                    <p className="text-muted-foreground text-lg mb-4">No destinations found matching your filters.</p>
+                    <Button
+                      onClick={() => {
+                        setSearchTerm('');
+                        setSelectedState('');
+                        setSelectedCostRange('');
+                        setMinRating(0);
+                      }}
+                      variant="outline"
+                    >
+                      Clear Filters
+                    </Button>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {filteredDestinations.map(destination => (
+                    <Link key={destination.id} href={`/destination/${destination.id}`}>
+                      <Card className="overflow-hidden hover-lift transition-all duration-300 h-full hover:shadow-xl border-0 cursor-pointer">
+                        <div className="relative h-56 bg-muted overflow-hidden">
+                          <Image
+                            src={destination.image}
+                            alt={destination.name}
+                            fill
+                            className="object-cover hover:scale-110 transition-transform duration-300"
+                            onError={(e) => {
+                              e.currentTarget.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=500&h=300&fit=crop';
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                          
+                          {/* Tags */}
+                          <div className="absolute top-3 right-3 flex gap-2">
+                            <Badge className="bg-yellow-400 text-gray-900 hover:bg-yellow-300">
+                              <Star className="h-3 w-3 mr-1 fill-current" />
+                              {destination.rating}
+                            </Badge>
+                          </div>
+
+                          {/* Title Overlay */}
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-xl font-bold text-white text-balance">{destination.name}</h3>
+                            <p className="text-sm text-white/80 flex items-center gap-1">
+                              <MapPin className="h-3 w-3" />
+                              {destination.state}
+                            </p>
+                          </div>
+                        </div>
+
+                        <CardContent className="p-4 space-y-3">
+                          <p className="text-sm text-muted-foreground line-clamp-2">{destination.description}</p>
+                          
+                          {/* Price and Info */}
+                          <div className="flex items-center justify-between pt-2 border-t border-border">
+                            <div className="flex items-center gap-2">
+                              <DollarSign className="h-4 w-4 text-primary" />
+                              <span className="text-sm font-semibold">₹{destination.costPerDay.budget.total}/day</span>
+                            </div>
+                            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                              <Calendar className="h-3 w-3" />
+                              {destination.bestTime.split(',')[0]}
+                            </div>
+                          </div>
+
+                          {/* Reviews */}
+                          <div className="text-xs text-muted-foreground">
+                            {destination.reviews} reviews
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
                   ))}
                 </div>
-              ) : (
-                <Card className="p-12 text-center">
-                  <p className="text-muted-foreground text-lg">
-                    No destinations found. Try adjusting your filters.
-                  </p>
-                </Card>
               )}
             </div>
           </div>

@@ -1,219 +1,329 @@
 'use client';
 
-import { use } from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/header';
-import { getDestinationById } from '@/lib/destination-data';
+import { INDIA_DESTINATIONS } from '@/lib/india-destinations';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, MapPin, Calendar, DollarSign, Star, Utensils, Activity, AlertCircle } from 'lucide-react';
+import { MapPin, Star, Calendar, DollarSign, Utensils, MapPinIcon, ArrowRight, Check } from 'lucide-react';
+import { notFound } from 'next/navigation';
 
-interface PageProps {
-  params: Promise<{ id: string }>;
+interface Props {
+  params: {
+    id: string;
+  };
 }
 
-export default function DestinationDetailPage({ params }: PageProps) {
-  const { id } = use(params);
-  const destination = getDestinationById(id);
+const COST_TIERS = [
+  { name: 'Budget', key: 'budget', color: 'from-green-600 to-emerald-500', icon: '🏖️' },
+  { name: 'Mid-Range', key: 'mid', color: 'from-blue-600 to-cyan-500', icon: '🏨' },
+  { name: 'Luxury', key: 'luxury', color: 'from-purple-600 to-pink-500', icon: '⭐' },
+];
+
+export default function DestinationDetailPage({ params }: Props) {
+  const destination = INDIA_DESTINATIONS.find(d => d.id === params.id);
+  const [selectedTier, setSelectedTier] = useState<'budget' | 'mid' | 'luxury'>('budget');
+  const [days, setDays] = useState(5);
 
   if (!destination) {
-    return (
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-1 flex items-center justify-center px-4">
-          <Card className="max-w-md w-full">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3 text-destructive mb-4">
-                <AlertCircle className="w-5 h-5" />
-                <p className="font-medium">Destination not found</p>
-              </div>
-              <Button asChild className="w-full">
-                <Link href="/explore">Back to Explore</Link>
-              </Button>
-            </CardContent>
-          </Card>
-        </main>
-      </div>
-    );
+    notFound();
   }
+
+  const costData = destination.costPerDay[selectedTier];
+  const totalCost = costData.total * days;
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <main className="flex-1 py-8 px-4">
-        <div className="container mx-auto max-w-4xl">
-          {/* Back Button */}
-          <Button asChild variant="ghost" className="mb-6 -ml-2">
-            <Link href="/explore">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Explore
-            </Link>
-          </Button>
+      <main className="flex-1">
+        {/* Hero Section with Image */}
+        <section className="relative h-96 bg-muted overflow-hidden">
+          <Image
+            src={destination.image}
+            alt={destination.name}
+            fill
+            className="object-cover"
+            priority
+            onError={(e) => {
+              e.currentTarget.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=400&fit=crop';
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
 
-          {/* Hero Section */}
-          <div className="mb-8 rounded-lg overflow-hidden border border-border h-96 bg-muted">
-            <img
-              src={destination.image}
-              alt={destination.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Title and Meta */}
-          <div className="mb-8">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h1 className="text-4xl font-bold text-foreground mb-2">{destination.name}</h1>
-                <div className="flex items-center gap-2">
-                  <Badge variant="secondary">{destination.region}</Badge>
-                </div>
+          {/* Content Overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
+            <div className="container mx-auto max-w-6xl">
+              <div className="flex items-center gap-2 mb-4">
+                <Badge className="bg-yellow-400 text-gray-900 hover:bg-yellow-300">
+                  <Star className="h-3 w-3 mr-1 fill-current" />
+                  {destination.rating}
+                </Badge>
+                <Badge variant="outline" className="bg-white/20 text-white border-white/40">
+                  {destination.reviews} reviews
+                </Badge>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-2 text-balance">{destination.name}</h1>
+              <div className="flex items-center gap-2 text-lg text-white/90">
+                <MapPin className="h-5 w-5" />
+                {destination.state}
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Quick Stats */}
-            <div className="grid md:grid-cols-3 gap-4 my-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-3">
-                    <Star className="w-5 h-5 text-secondary fill-secondary mt-0.5" />
-                    <div>
-                      <div className="text-2xl font-bold text-foreground">{destination.rating}</div>
-                      <div className="text-sm text-muted-foreground">{destination.reviews} reviews</div>
-                    </div>
-                  </div>
+        {/* Main Content */}
+        <div className="container mx-auto max-w-6xl px-4 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left Column - Info */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Description */}
+              <Card className="border-0 bg-gradient-to-br from-primary/5 to-accent/5">
+                <CardHeader>
+                  <CardTitle>About</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground text-lg leading-relaxed">{destination.description}</p>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-3">
-                    <Calendar className="w-5 h-5 text-primary mt-0.5" />
-                    <div>
-                      <div className="text-lg font-semibold text-foreground">{destination.duration}</div>
-                      <div className="text-sm text-muted-foreground">Ideal stay</div>
-                    </div>
-                  </div>
+              {/* Best Time to Visit */}
+              <Card className="border-0">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-primary" />
+                    Best Time to Visit
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground">{destination.bestTime}</p>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-3">
-                    <DollarSign className="w-5 h-5 text-accent mt-0.5" />
-                    <div>
-                      <div className="text-lg font-semibold text-foreground">
-                        ₹{destination.budget.low.toLocaleString()}-{destination.budget.high.toLocaleString()}
+              {/* Top Attractions */}
+              <Card className="border-0">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPinIcon className="h-5 w-5 text-primary" />
+                    Top Attractions
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {destination.attractions.map((attraction, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-foreground">{attraction}</span>
                       </div>
-                      <div className="text-sm text-muted-foreground">Per day</div>
-                    </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Local Food */}
+              <Card className="border-0">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Utensils className="h-5 w-5 text-primary" />
+                    Must Try Food
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {destination.food.map((food, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <span className="text-lg">🍽️</span>
+                        <span className="text-foreground">{food}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Experiences */}
+              <Card className="border-0">
+                <CardHeader>
+                  <CardTitle>Experiences</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {destination.experiences.map((exp, i) => (
+                      <div key={i} className="flex items-center gap-3 p-2 bg-muted/50 rounded-md">
+                        <span className="text-lg">✨</span>
+                        <span className="text-foreground">{exp}</span>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
             </div>
+
+            {/* Right Column - Cost Tiers */}
+            <div className="lg:col-span-1 space-y-6">
+              {/* Cost Tier Selector */}
+              <div className="sticky top-24 space-y-6">
+                <h3 className="text-2xl font-bold text-foreground">Daily Costs</h3>
+
+                {/* Tier Cards */}
+                <div className="space-y-3">
+                  {COST_TIERS.map(tier => (
+                    <button
+                      key={tier.key}
+                      onClick={() => setSelectedTier(tier.key as 'budget' | 'mid' | 'luxury')}
+                      className={`w-full text-left transition-all duration-300 p-4 rounded-lg border-2 ${
+                        selectedTier === tier.key
+                          ? 'border-primary bg-primary/10'
+                          : 'border-muted hover:border-primary/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-lg">{tier.icon}</span>
+                        <span className="font-semibold text-foreground">{tier.name}</span>
+                      </div>
+                      <div className="text-sm text-muted-foreground">Click to view details</div>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Selected Tier Details */}
+                <Card className={`border-0 bg-gradient-to-br ${COST_TIERS.find(t => t.key === selectedTier)?.color || 'from-blue-600'}`}>
+                  <CardContent className="p-6 text-white">
+                    <p className="text-sm text-white/80 mb-4">Daily Breakdown</p>
+
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center justify-between pb-2 border-b border-white/20">
+                        <span>🏨 Accommodation</span>
+                        <span className="font-semibold">₹{costData.accommodation}</span>
+                      </div>
+                      <div className="flex items-center justify-between pb-2 border-b border-white/20">
+                        <span>🍽️ Food</span>
+                        <span className="font-semibold">₹{costData.food}</span>
+                      </div>
+                      <div className="flex items-center justify-between pb-2 border-b border-white/20">
+                        <span>🚌 Transport</span>
+                        <span className="font-semibold">₹{costData.transport}</span>
+                      </div>
+                      <div className="flex items-center justify-between pb-2 border-b border-white/20">
+                        <span>🎫 Activities</span>
+                        <span className="font-semibold">₹{costData.activities}</span>
+                      </div>
+                    </div>
+
+                    <div className="bg-white/20 rounded-lg p-4">
+                      <p className="text-sm text-white/80 mb-1">Total Per Day</p>
+                      <p className="text-3xl font-bold">₹{costData.total}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Multi-Day Calculator */}
+                <Card className="border-0">
+                  <CardHeader>
+                    <CardTitle className="text-lg">Plan Your Trip</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium">Number of Days</label>
+                      <div className="flex items-center gap-2 mt-2">
+                        <button
+                          onClick={() => setDays(Math.max(1, days - 1))}
+                          className="p-2 border border-input rounded-md hover:bg-muted"
+                        >
+                          −
+                        </button>
+                        <input
+                          type="number"
+                          min="1"
+                          max="30"
+                          value={days}
+                          onChange={(e) => setDays(Math.max(1, parseInt(e.target.value) || 1))}
+                          className="flex-1 px-3 py-2 border border-input rounded-md text-center"
+                        />
+                        <button
+                          onClick={() => setDays(Math.min(30, days + 1))}
+                          className="p-2 border border-input rounded-md hover:bg-muted"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="bg-muted p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground mb-1">Total Cost Estimate</p>
+                      <p className="text-3xl font-bold text-foreground">
+                        ₹{totalCost.toLocaleString()}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-2">for {days} {days === 1 ? 'day' : 'days'}</p>
+                    </div>
+                    <Button asChild className="w-full bg-primary hover:bg-primary/90">
+                      <Link href="/itinerary">
+                        Start Planning
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Rating and Reviews */}
+                <Card className="border-0">
+                  <CardContent className="p-6 text-center">
+                    <div className="flex items-center justify-center gap-1 mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-5 w-5 ${i < Math.floor(destination.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground'}`}
+                        />
+                      ))}
+                    </div>
+                    <p className="font-semibold text-foreground">{destination.rating}/5</p>
+                    <p className="text-sm text-muted-foreground">{destination.reviews} reviews</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
 
-          {/* Description */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>About {destination.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-foreground/80 leading-relaxed mb-4">{destination.description}</p>
-              <div className="grid md:grid-cols-2 gap-4 pt-4">
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">Best Time to Visit</h4>
-                  <p className="text-foreground/70">{destination.bestTime}</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">Travel Experience</h4>
-                  <p className="text-foreground/70">{destination.experience}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Attractions */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-primary" />
-                Top Attractions
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
-                {destination.attractions.map((attraction, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span className="text-foreground">{attraction}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Activities */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Activity className="w-5 h-5 text-primary" />
-                Things to Do
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
-                {destination.activities.map((activity, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
-                    <div className="w-2 h-2 rounded-full bg-secondary mt-2 flex-shrink-0" />
-                    <span className="text-foreground">{activity}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Food & Cuisine */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Utensils className="w-5 h-5 text-accent" />
-                Local Cuisine
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
-                {destination.food.map((dish, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
-                    <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
-                    <span className="text-foreground">{dish}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* CTA Section */}
-          <Card className="bg-primary text-primary-foreground mb-8">
-            <CardContent className="pt-8 pb-8">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Ready to visit {destination.name}?</h3>
-                  <p className="text-primary-foreground/90">
-                    Plan your personalized itinerary and start your adventure
-                  </p>
-                </div>
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 whitespace-nowrap"
-                >
-                  <Link href="/itinerary">Plan Trip</Link>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Similar Destinations */}
+          <div className="mt-16 pt-12 border-t border-border">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Explore More from {destination.state}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {INDIA_DESTINATIONS.filter(d => d.state === destination.state && d.id !== destination.id).slice(0, 3).map(similar => (
+                <Link key={similar.id} href={`/destination/${similar.id}`}>
+                  <Card className="overflow-hidden hover-lift transition-all duration-300 h-full hover:shadow-xl border-0">
+                    <div className="relative h-40 bg-muted overflow-hidden">
+                      <Image
+                        src={similar.image}
+                        alt={similar.name}
+                        fill
+                        className="object-cover hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&h=300&fit=crop';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      <div className="absolute bottom-3 left-3">
+                        <p className="text-white font-semibold">{similar.name}</p>
+                      </div>
+                    </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1">
+                          <DollarSign className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-semibold">₹{similar.costPerDay.budget.total}/day</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                          <span className="text-sm font-medium">{similar.rating}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
     </div>

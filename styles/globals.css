@@ -115,6 +115,62 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Gradient utilities */
+.gradient-hero {
+  background: linear-gradient(135deg, #0F766E 0%, #3B82F6 50%, #E67E22 100%);
+}
+
+.gradient-teal-blue {
+  background: linear-gradient(90deg, #0F766E 0%, #0891B2 100%);
+}
+
+.gradient-saffron-orange {
+  background: linear-gradient(90deg, #E67E22 0%, #F97316 100%);
+}
+
+.gradient-green-teal {
+  background: linear-gradient(135deg, #059669 0%, #0F766E 100%);
+}
+
+.gradient-purple-pink {
+  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, #E67E22 0%, #F59E0B 50%, #FBBF24 100%);
+}
+
+/* Background overlays */
+.bg-hero-overlay {
+  background: linear-gradient(180deg, rgba(15, 118, 110, 0.8) 0%, rgba(59, 130, 246, 0.6) 100%);
+}
+
+.bg-gradient-overlay {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%);
+}
+
+/* Image backgrounds */
+.bg-image-cover {
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-image-contain {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Hover effects */
+.hover-gradient:hover {
+  background: linear-gradient(135deg, #0F766E 0%, #3B82F6 100%);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
