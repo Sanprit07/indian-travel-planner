@@ -128,10 +128,6 @@ export const INDIA_DESTINATIONS: City[] = [
       "Rice preparations",
     ],
     experiences: ["Temple visits", "Fort exploration", "Spiritual rituals", "Local markets"],
-    hotels: [""],
-    resorts: [""],
-    lounges: [""],
-    restaurants: [""],
     hotels: [
       "Fortune Hotels Tirupati",
       "Hotel Bliss",
@@ -184,10 +180,6 @@ export const INDIA_DESTINATIONS: City[] = [
       "Coastal specialties",
     ],
     experiences: ["Beach relaxation", "Hill station visits", "Cave exploration", "Sunset views"],
-    hotels: [""],
-    resorts: [""],
-    lounges: [""],
-    restaurants: [""],
     hotels: [
       "Taj Gateway Hotel Vizag",
       "Novotel Visakhapatnam Varun Beach",
@@ -242,10 +234,6 @@ export const INDIA_DESTINATIONS: City[] = [
       "Rice dishes",
     ],
     experiences: ["Temple tours", "Fort exploration", "Wildlife viewing", "Heritage walks"],
-    hotels: [""],
-    resorts: [""],
-    lounges: [""],
-    restaurants: [""],
     costPerDay: {
       budget: createCostBreakdown(300, 250, 100, 140),
       mid: createCostBreakdown(550, 400, 180, 280),
@@ -317,29 +305,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Waterfall visits",
       "Mountain views",
       "Buddhist culture",
-    ],,
-    hotels: [
-      "Tawang Grand Hotel",
-      "The Tawang Palace",
-      "Tawang Comfort Inn",
-      "Luxury Tawang Resort",
     ],
-    resorts: [
-      "Tawang Resort & Spa",
-      "Heritage Tawang Resort",
-      "Tawang Adventure Resort",
-    ],
-    lounges: [
-      "Tawang Sky Lounge",
-      "The Tawang Lounge",
-      "Tawang Heritage Cafe",
-    ],
-    restaurants: [
-      "Tawang Kitchen",
-      "Local Arunachal Pradesh Cuisine",
-      "Tawang Heritage Restaurant",
-      "The Tawang Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(600, 400, 250, 300),
       mid: createCostBreakdown(1200, 700, 400, 600),
@@ -374,29 +340,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Park exploration",
       "Tea estate tours",
       "Bird watching",
-    ],,
-    hotels: [
-      "Dibrugarh Grand Hotel",
-      "The Dibrugarh Palace",
-      "Dibrugarh Comfort Inn",
-      "Luxury Dibrugarh Resort",
     ],
-    resorts: [
-      "Dibrugarh Resort & Spa",
-      "Heritage Dibrugarh Resort",
-      "Dibrugarh Adventure Resort",
-    ],
-    lounges: [
-      "Dibrugarh Sky Lounge",
-      "The Dibrugarh Lounge",
-      "Dibrugarh Heritage Cafe",
-    ],
-    restaurants: [
-      "Dibrugarh Kitchen",
-      "Local Arunachal Pradesh Cuisine",
-      "Dibrugarh Heritage Restaurant",
-      "The Dibrugarh Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -433,29 +377,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "River cruises",
       "Museum tours",
       "Local food",
-    ],,
-    hotels: [
-      "Guwahati Grand Hotel",
-      "The Guwahati Palace",
-      "Guwahati Comfort Inn",
-      "Luxury Guwahati Resort",
     ],
-    resorts: [
-      "Guwahati Resort & Spa",
-      "Heritage Guwahati Resort",
-      "Guwahati Adventure Resort",
-    ],
-    lounges: [
-      "Guwahati Sky Lounge",
-      "The Guwahati Lounge",
-      "Guwahati Heritage Cafe",
-    ],
-    restaurants: [
-      "Guwahati Kitchen",
-      "Local Assam Cuisine",
-      "Guwahati Heritage Restaurant",
-      "The Guwahati Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -490,29 +412,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Wildlife photography",
       "Elephant rides",
       "Bird watching",
-    ],,
-    hotels: [
-      "Kaziranga Grand Hotel",
-      "The Kaziranga Palace",
-      "Kaziranga Comfort Inn",
-      "Luxury Kaziranga Resort",
     ],
-    resorts: [
-      "Kaziranga Resort & Spa",
-      "Heritage Kaziranga Resort",
-      "Kaziranga Adventure Resort",
-    ],
-    lounges: [
-      "Kaziranga Sky Lounge",
-      "The Kaziranga Lounge",
-      "Kaziranga Heritage Cafe",
-    ],
-    restaurants: [
-      "Kaziranga Kitchen",
-      "Local Assam Cuisine",
-      "Kaziranga Heritage Restaurant",
-      "The Kaziranga Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 200, 300),
       mid: createCostBreakdown(1000, 650, 350, 600),
@@ -547,29 +447,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Living bridge walks",
       "Cloud forest exploration",
       "Local markets",
-    ],,
-    hotels: [
-      "Shillong Grand Hotel",
-      "The Shillong Palace",
-      "Shillong Comfort Inn",
-      "Luxury Shillong Resort",
     ],
-    resorts: [
-      "Shillong Resort & Spa",
-      "Heritage Shillong Resort",
-      "Shillong Adventure Resort",
-    ],
-    lounges: [
-      "Shillong Sky Lounge",
-      "The Shillong Lounge",
-      "Shillong Heritage Cafe",
-    ],
-    restaurants: [
-      "Shillong Kitchen",
-      "Local Meghalaya Cuisine",
-      "Shillong Heritage Restaurant",
-      "The Shillong Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 350, 150, 220),
       mid: createCostBreakdown(850, 600, 250, 450),
@@ -606,29 +484,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Archaeological exploration",
       "Ghat walks",
       "Cultural heritage tours",
-    ],,
-    hotels: [
-      "Patna Grand Hotel",
-      "The Patna Palace",
-      "Patna Comfort Inn",
-      "Luxury Patna Resort",
     ],
-    resorts: [
-      "Patna Resort & Spa",
-      "Heritage Patna Resort",
-      "Patna Adventure Resort",
-    ],
-    lounges: [
-      "Patna Sky Lounge",
-      "The Patna Lounge",
-      "Patna Heritage Cafe",
-    ],
-    restaurants: [
-      "Patna Kitchen",
-      "Local Bihar Cuisine",
-      "Patna Heritage Restaurant",
-      "The Patna Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(300, 250, 100, 150),
       mid: createCostBreakdown(600, 450, 200, 300),
@@ -663,29 +519,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Temple rituals",
       "Spiritual retreats",
       "Peaceful walks",
-    ],,
-    hotels: [
-      "Bodh Gaya Grand Hotel",
-      "The Bodh Gaya Palace",
-      "Bodh Gaya Comfort Inn",
-      "Luxury Bodh Gaya Resort",
     ],
-    resorts: [
-      "Bodh Gaya Resort & Spa",
-      "Heritage Bodh Gaya Resort",
-      "Bodh Gaya Adventure Resort",
-    ],
-    lounges: [
-      "Bodh Gaya Sky Lounge",
-      "The Bodh Gaya Lounge",
-      "Bodh Gaya Heritage Cafe",
-    ],
-    restaurants: [
-      "Bodh Gaya Kitchen",
-      "Local Bihar Cuisine",
-      "Bodh Gaya Heritage Restaurant",
-      "The Bodh Gaya Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(250, 200, 80, 120),
       mid: createCostBreakdown(500, 350, 150, 250),
@@ -720,29 +554,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Hot spring baths",
       "Monastery visits",
       "Historical tours",
-    ],,
-    hotels: [
-      "Rajgir Grand Hotel",
-      "The Rajgir Palace",
-      "Rajgir Comfort Inn",
-      "Luxury Rajgir Resort",
     ],
-    resorts: [
-      "Rajgir Resort & Spa",
-      "Heritage Rajgir Resort",
-      "Rajgir Adventure Resort",
-    ],
-    lounges: [
-      "Rajgir Sky Lounge",
-      "The Rajgir Lounge",
-      "Rajgir Heritage Cafe",
-    ],
-    restaurants: [
-      "Rajgir Kitchen",
-      "Local Bihar Cuisine",
-      "Rajgir Heritage Restaurant",
-      "The Rajgir Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(300, 250, 100, 140),
       mid: createCostBreakdown(600, 400, 180, 280),
@@ -779,29 +591,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Museum exploration",
       "Tribal culture",
       "City tours",
-    ],,
-    hotels: [
-      "Raipur Grand Hotel",
-      "The Raipur Palace",
-      "Raipur Comfort Inn",
-      "Luxury Raipur Resort",
     ],
-    resorts: [
-      "Raipur Resort & Spa",
-      "Heritage Raipur Resort",
-      "Raipur Adventure Resort",
-    ],
-    lounges: [
-      "Raipur Sky Lounge",
-      "The Raipur Lounge",
-      "Raipur Heritage Cafe",
-    ],
-    restaurants: [
-      "Raipur Kitchen",
-      "Local Chhattisgarh Cuisine",
-      "Raipur Heritage Restaurant",
-      "The Raipur Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(300, 250, 100, 140),
       mid: createCostBreakdown(600, 400, 180, 280),
@@ -836,29 +626,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Tribal village visits",
       "Market exploration",
       "Wildlife viewing",
-    ],,
-    hotels: [
-      "Jagdalpur Grand Hotel",
-      "The Jagdalpur Palace",
-      "Jagdalpur Comfort Inn",
-      "Luxury Jagdalpur Resort",
     ],
-    resorts: [
-      "Jagdalpur Resort & Spa",
-      "Heritage Jagdalpur Resort",
-      "Jagdalpur Adventure Resort",
-    ],
-    lounges: [
-      "Jagdalpur Sky Lounge",
-      "The Jagdalpur Lounge",
-      "Jagdalpur Heritage Cafe",
-    ],
-    restaurants: [
-      "Jagdalpur Kitchen",
-      "Local Chhattisgarh Cuisine",
-      "Jagdalpur Heritage Restaurant",
-      "The Jagdalpur Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 160),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -893,29 +661,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Museum visits",
       "Food exploration",
       "Shopping",
-    ],,
-    hotels: [
-      "Indore Grand Hotel",
-      "The Indore Palace",
-      "Indore Comfort Inn",
-      "Luxury Indore Resort",
     ],
-    resorts: [
-      "Indore Resort & Spa",
-      "Heritage Indore Resort",
-      "Indore Adventure Resort",
-    ],
-    lounges: [
-      "Indore Sky Lounge",
-      "The Indore Lounge",
-      "Indore Heritage Cafe",
-    ],
-    restaurants: [
-      "Indore Kitchen",
-      "Local Madhya Pradesh Cuisine",
-      "Indore Heritage Restaurant",
-      "The Indore Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(300, 250, 100, 140),
       mid: createCostBreakdown(600, 400, 180, 280),
@@ -952,29 +698,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Church exploration",
       "Spice plantation tours",
       "Water sports",
-    ],,
-    hotels: [
-      "Panaji Grand Hotel",
-      "The Panaji Palace",
-      "Panaji Comfort Inn",
-      "Luxury Panaji Resort",
     ],
-    resorts: [
-      "Panaji Resort & Spa",
-      "Heritage Panaji Resort",
-      "Panaji Adventure Resort",
-    ],
-    lounges: [
-      "Panaji Sky Lounge",
-      "The Panaji Lounge",
-      "Panaji Heritage Cafe",
-    ],
-    restaurants: [
-      "Panaji Kitchen",
-      "Local Goa Cuisine",
-      "Panaji Heritage Restaurant",
-      "The Panaji Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 400, 200, 300),
       mid: createCostBreakdown(1000, 700, 300, 500),
@@ -1009,29 +733,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Water sports",
       "Flea markets",
       "Club hopping",
-    ],,
-    hotels: [
-      "North Goa Grand Hotel",
-      "The North Goa Palace",
-      "North Goa Comfort Inn",
-      "Luxury North Goa Resort",
     ],
-    resorts: [
-      "North Goa Resort & Spa",
-      "Heritage North Goa Resort",
-      "North Goa Adventure Resort",
-    ],
-    lounges: [
-      "North Goa Sky Lounge",
-      "The North Goa Lounge",
-      "North Goa Heritage Cafe",
-    ],
-    restaurants: [
-      "North Goa Kitchen",
-      "Local Goa Cuisine",
-      "North Goa Heritage Restaurant",
-      "The North Goa Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(600, 500, 250, 400),
       mid: createCostBreakdown(1200, 800, 350, 600),
@@ -1066,29 +768,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Backwater tours",
       "Dolphin spotting",
       "Fort exploration",
-    ],,
-    hotels: [
-      "South Goa Grand Hotel",
-      "The South Goa Palace",
-      "South Goa Comfort Inn",
-      "Luxury South Goa Resort",
     ],
-    resorts: [
-      "South Goa Resort & Spa",
-      "Heritage South Goa Resort",
-      "South Goa Adventure Resort",
-    ],
-    lounges: [
-      "South Goa Sky Lounge",
-      "The South Goa Lounge",
-      "South Goa Heritage Cafe",
-    ],
-    restaurants: [
-      "South Goa Kitchen",
-      "Local Goa Cuisine",
-      "South Goa Heritage Restaurant",
-      "The South Goa Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(450, 350, 180, 250),
       mid: createCostBreakdown(900, 600, 280, 450),
@@ -1125,29 +805,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Kite festival",
       "Museum tours",
       "Shopping",
-    ],,
-    hotels: [
-      "Ahmedabad Grand Hotel",
-      "The Ahmedabad Palace",
-      "Ahmedabad Comfort Inn",
-      "Luxury Ahmedabad Resort",
     ],
-    resorts: [
-      "Ahmedabad Resort & Spa",
-      "Heritage Ahmedabad Resort",
-      "Ahmedabad Adventure Resort",
-    ],
-    lounges: [
-      "Ahmedabad Sky Lounge",
-      "The Ahmedabad Lounge",
-      "Ahmedabad Heritage Cafe",
-    ],
-    restaurants: [
-      "Ahmedabad Kitchen",
-      "Local Gujarat Cuisine",
-      "Ahmedabad Heritage Restaurant",
-      "The Ahmedabad Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 500, 220, 350),
@@ -1182,29 +840,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Temple visits",
       "Spiritual retreats",
       "Dawn hikes",
-    ],,
-    hotels: [
-      "Girnar Grand Hotel",
-      "The Girnar Palace",
-      "Girnar Comfort Inn",
-      "Luxury Girnar Resort",
     ],
-    resorts: [
-      "Girnar Resort & Spa",
-      "Heritage Girnar Resort",
-      "Girnar Adventure Resort",
-    ],
-    lounges: [
-      "Girnar Sky Lounge",
-      "The Girnar Lounge",
-      "Girnar Heritage Cafe",
-    ],
-    restaurants: [
-      "Girnar Kitchen",
-      "Local Gujarat Cuisine",
-      "Girnar Heritage Restaurant",
-      "The Girnar Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(300, 250, 100, 130),
       mid: createCostBreakdown(550, 400, 180, 260),
@@ -1239,29 +875,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Craft shopping",
       "Tribal interactions",
       "Sunset viewing",
-    ],,
-    hotels: [
-      "Rann of Kutch Grand Hotel",
-      "The Rann of Kutch Palace",
-      "Rann of Kutch Comfort Inn",
-      "Luxury Rann of Kutch Resort",
     ],
-    resorts: [
-      "Rann of Kutch Resort & Spa",
-      "Heritage Rann of Kutch Resort",
-      "Rann of Kutch Adventure Resort",
-    ],
-    lounges: [
-      "Rann of Kutch Sky Lounge",
-      "The Rann of Kutch Lounge",
-      "Rann of Kutch Heritage Cafe",
-    ],
-    restaurants: [
-      "Rann of Kutch Kitchen",
-      "Local Gujarat Cuisine",
-      "Rann of Kutch Heritage Restaurant",
-      "The Rann of Kutch Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -1298,29 +912,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Lake walks",
       "Shopping",
       "Museum visits",
-    ],,
-    hotels: [
-      "Chandigarh Grand Hotel",
-      "The Chandigarh Palace",
-      "Chandigarh Comfort Inn",
-      "Luxury Chandigarh Resort",
     ],
-    resorts: [
-      "Chandigarh Resort & Spa",
-      "Heritage Chandigarh Resort",
-      "Chandigarh Adventure Resort",
-    ],
-    lounges: [
-      "Chandigarh Sky Lounge",
-      "The Chandigarh Lounge",
-      "Chandigarh Heritage Cafe",
-    ],
-    restaurants: [
-      "Chandigarh Kitchen",
-      "Local Haryana Cuisine",
-      "Chandigarh Heritage Restaurant",
-      "The Chandigarh Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -1355,29 +947,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Paragliding",
       "Lake fishing",
       "Adventure sports",
-    ],,
-    hotels: [
-      "Morni Hills Grand Hotel",
-      "The Morni Hills Palace",
-      "Morni Hills Comfort Inn",
-      "Luxury Morni Hills Resort",
     ],
-    resorts: [
-      "Morni Hills Resort & Spa",
-      "Heritage Morni Hills Resort",
-      "Morni Hills Adventure Resort",
-    ],
-    lounges: [
-      "Morni Hills Sky Lounge",
-      "The Morni Hills Lounge",
-      "Morni Hills Heritage Cafe",
-    ],
-    restaurants: [
-      "Morni Hills Kitchen",
-      "Local Haryana Cuisine",
-      "Morni Hills Heritage Restaurant",
-      "The Morni Hills Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 220),
       mid: createCostBreakdown(800, 500, 250, 400),
@@ -1414,29 +984,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Temple visits",
       "Cable car rides",
       "Mountain trekking",
-    ],,
-    hotels: [
-      "Shimla Grand Hotel",
-      "The Shimla Palace",
-      "Shimla Comfort Inn",
-      "Luxury Shimla Resort",
     ],
-    resorts: [
-      "Shimla Resort & Spa",
-      "Heritage Shimla Resort",
-      "Shimla Adventure Resort",
-    ],
-    lounges: [
-      "Shimla Sky Lounge",
-      "The Shimla Lounge",
-      "Shimla Heritage Cafe",
-    ],
-    restaurants: [
-      "Shimla Kitchen",
-      "Local Himachal Pradesh Cuisine",
-      "Shimla Heritage Restaurant",
-      "The Shimla Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(600, 400, 200, 300),
       mid: createCostBreakdown(1100, 700, 300, 500),
@@ -1471,29 +1019,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "River rafting",
       "Mountain trekking",
       "Mountain biking",
-    ],,
-    hotels: [
-      "Manali Grand Hotel",
-      "The Manali Palace",
-      "Manali Comfort Inn",
-      "Luxury Manali Resort",
     ],
-    resorts: [
-      "Manali Resort & Spa",
-      "Heritage Manali Resort",
-      "Manali Adventure Resort",
-    ],
-    lounges: [
-      "Manali Sky Lounge",
-      "The Manali Lounge",
-      "Manali Heritage Cafe",
-    ],
-    restaurants: [
-      "Manali Kitchen",
-      "Local Himachal Pradesh Cuisine",
-      "Manali Heritage Restaurant",
-      "The Manali Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(600, 400, 200, 300),
       mid: createCostBreakdown(1100, 700, 300, 500),
@@ -1528,29 +1054,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Monastery visits",
       "Mountain trekking",
       "Meditation",
-    ],,
-    hotels: [
-      "Dharamshala Grand Hotel",
-      "The Dharamshala Palace",
-      "Dharamshala Comfort Inn",
-      "Luxury Dharamshala Resort",
     ],
-    resorts: [
-      "Dharamshala Resort & Spa",
-      "Heritage Dharamshala Resort",
-      "Dharamshala Adventure Resort",
-    ],
-    lounges: [
-      "Dharamshala Sky Lounge",
-      "The Dharamshala Lounge",
-      "Dharamshala Heritage Cafe",
-    ],
-    restaurants: [
-      "Dharamshala Kitchen",
-      "Local Himachal Pradesh Cuisine",
-      "Dharamshala Heritage Restaurant",
-      "The Dharamshala Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 150, 250),
       mid: createCostBreakdown(1000, 600, 250, 450),
@@ -1585,29 +1089,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Paragliding",
       "Dussehra festival",
       "Shopping",
-    ],,
-    hotels: [
-      "Kullu Grand Hotel",
-      "The Kullu Palace",
-      "Kullu Comfort Inn",
-      "Luxury Kullu Resort",
     ],
-    resorts: [
-      "Kullu Resort & Spa",
-      "Heritage Kullu Resort",
-      "Kullu Adventure Resort",
-    ],
-    lounges: [
-      "Kullu Sky Lounge",
-      "The Kullu Lounge",
-      "Kullu Heritage Cafe",
-    ],
-    restaurants: [
-      "Kullu Kitchen",
-      "Local Himachal Pradesh Cuisine",
-      "Kullu Heritage Restaurant",
-      "The Kullu Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 150, 250),
       mid: createCostBreakdown(950, 600, 250, 450),
@@ -1644,29 +1126,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Dam exploration",
       "Nature walks",
       "Photography",
-    ],,
-    hotels: [
-      "Ranchi Grand Hotel",
-      "The Ranchi Palace",
-      "Ranchi Comfort Inn",
-      "Luxury Ranchi Resort",
     ],
-    resorts: [
-      "Ranchi Resort & Spa",
-      "Heritage Ranchi Resort",
-      "Ranchi Adventure Resort",
-    ],
-    lounges: [
-      "Ranchi Sky Lounge",
-      "The Ranchi Lounge",
-      "Ranchi Heritage Cafe",
-    ],
-    restaurants: [
-      "Ranchi Kitchen",
-      "Local Jharkhand Cuisine",
-      "Ranchi Heritage Restaurant",
-      "The Ranchi Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -1701,29 +1161,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Park visits",
       "Lake boating",
       "Zoo exploration",
-    ],,
-    hotels: [
-      "Jamshedpur Grand Hotel",
-      "The Jamshedpur Palace",
-      "Jamshedpur Comfort Inn",
-      "Luxury Jamshedpur Resort",
     ],
-    resorts: [
-      "Jamshedpur Resort & Spa",
-      "Heritage Jamshedpur Resort",
-      "Jamshedpur Adventure Resort",
-    ],
-    lounges: [
-      "Jamshedpur Sky Lounge",
-      "The Jamshedpur Lounge",
-      "Jamshedpur Heritage Cafe",
-    ],
-    restaurants: [
-      "Jamshedpur Kitchen",
-      "Local Jharkhand Cuisine",
-      "Jamshedpur Heritage Restaurant",
-      "The Jamshedpur Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -1760,29 +1198,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Garden walks",
       "Museum tours",
       "Nightlife",
-    ],,
-    hotels: [
-      "Bangalore Grand Hotel",
-      "The Bangalore Palace",
-      "Bangalore Comfort Inn",
-      "Luxury Bangalore Resort",
     ],
-    resorts: [
-      "Bangalore Resort & Spa",
-      "Heritage Bangalore Resort",
-      "Bangalore Adventure Resort",
-    ],
-    lounges: [
-      "Bangalore Sky Lounge",
-      "The Bangalore Lounge",
-      "Bangalore Heritage Cafe",
-    ],
-    restaurants: [
-      "Bangalore Kitchen",
-      "Local Karnataka Cuisine",
-      "Bangalore Heritage Restaurant",
-      "The Bangalore Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 400, 200, 300),
       mid: createCostBreakdown(1000, 700, 300, 500),
@@ -1817,29 +1233,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Hill trekking",
       "Garden walks",
       "Temple visits",
-    ],,
-    hotels: [
-      "Mysore Grand Hotel",
-      "The Mysore Palace",
-      "Mysore Comfort Inn",
-      "Luxury Mysore Resort",
     ],
-    resorts: [
-      "Mysore Resort & Spa",
-      "Heritage Mysore Resort",
-      "Mysore Adventure Resort",
-    ],
-    lounges: [
-      "Mysore Sky Lounge",
-      "The Mysore Lounge",
-      "Mysore Heritage Cafe",
-    ],
-    restaurants: [
-      "Mysore Kitchen",
-      "Local Karnataka Cuisine",
-      "Mysore Heritage Restaurant",
-      "The Mysore Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -1874,29 +1268,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Waterfall trekking",
       "Monastery visits",
       "Forest walks",
-    ],,
-    hotels: [
-      "Coorg Grand Hotel",
-      "The Coorg Palace",
-      "Coorg Comfort Inn",
-      "Luxury Coorg Resort",
     ],
-    resorts: [
-      "Coorg Resort & Spa",
-      "Heritage Coorg Resort",
-      "Coorg Adventure Resort",
-    ],
-    lounges: [
-      "Coorg Sky Lounge",
-      "The Coorg Lounge",
-      "Coorg Heritage Cafe",
-    ],
-    restaurants: [
-      "Coorg Kitchen",
-      "Local Karnataka Cuisine",
-      "Coorg Heritage Restaurant",
-      "The Coorg Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 150, 250),
       mid: createCostBreakdown(1000, 600, 250, 450),
@@ -1933,29 +1305,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Houseboat stays",
       "Heritage walks",
       "Water sports",
-    ],,
-    hotels: [
-      "Kochi Grand Hotel",
-      "The Kochi Palace",
-      "Kochi Comfort Inn",
-      "Luxury Kochi Resort",
     ],
-    resorts: [
-      "Kochi Resort & Spa",
-      "Heritage Kochi Resort",
-      "Kochi Adventure Resort",
-    ],
-    lounges: [
-      "Kochi Sky Lounge",
-      "The Kochi Lounge",
-      "Kochi Heritage Cafe",
-    ],
-    restaurants: [
-      "Kochi Kitchen",
-      "Local Kerala Cuisine",
-      "Kochi Heritage Restaurant",
-      "The Kochi Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(600, 450, 200, 300),
       mid: createCostBreakdown(1100, 750, 300, 500),
@@ -1990,29 +1340,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Backwater cruises",
       "Beach relaxation",
       "Sunset viewing",
-    ],,
-    hotels: [
-      "Alleppey Grand Hotel",
-      "The Alleppey Palace",
-      "Alleppey Comfort Inn",
-      "Luxury Alleppey Resort",
     ],
-    resorts: [
-      "Alleppey Resort & Spa",
-      "Heritage Alleppey Resort",
-      "Alleppey Adventure Resort",
-    ],
-    lounges: [
-      "Alleppey Sky Lounge",
-      "The Alleppey Lounge",
-      "Alleppey Heritage Cafe",
-    ],
-    restaurants: [
-      "Alleppey Kitchen",
-      "Local Kerala Cuisine",
-      "Alleppey Heritage Restaurant",
-      "The Alleppey Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(700, 500, 200, 300),
       mid: createCostBreakdown(1200, 800, 300, 500),
@@ -2047,29 +1375,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Mountain trekking",
       "Dam exploration",
       "Nature walks",
-    ],,
-    hotels: [
-      "Munnar Grand Hotel",
-      "The Munnar Palace",
-      "Munnar Comfort Inn",
-      "Luxury Munnar Resort",
     ],
-    resorts: [
-      "Munnar Resort & Spa",
-      "Heritage Munnar Resort",
-      "Munnar Adventure Resort",
-    ],
-    lounges: [
-      "Munnar Sky Lounge",
-      "The Munnar Lounge",
-      "Munnar Heritage Cafe",
-    ],
-    restaurants: [
-      "Munnar Kitchen",
-      "Local Kerala Cuisine",
-      "Munnar Heritage Restaurant",
-      "The Munnar Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 150, 250),
       mid: createCostBreakdown(1000, 600, 250, 450),
@@ -2106,29 +1412,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Architecture study",
       "Sunset viewing",
       "Spiritual walks",
-    ],,
-    hotels: [
-      "Khajuraho Grand Hotel",
-      "The Khajuraho Palace",
-      "Khajuraho Comfort Inn",
-      "Luxury Khajuraho Resort",
     ],
-    resorts: [
-      "Khajuraho Resort & Spa",
-      "Heritage Khajuraho Resort",
-      "Khajuraho Adventure Resort",
-    ],
-    lounges: [
-      "Khajuraho Sky Lounge",
-      "The Khajuraho Lounge",
-      "Khajuraho Heritage Cafe",
-    ],
-    restaurants: [
-      "Khajuraho Kitchen",
-      "Local Madhya Pradesh Cuisine",
-      "Khajuraho Heritage Restaurant",
-      "The Khajuraho Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -2163,29 +1447,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Palace tours",
       "Musical performances",
       "Heritage walks",
-    ],,
-    hotels: [
-      "Gwalior Grand Hotel",
-      "The Gwalior Palace",
-      "Gwalior Comfort Inn",
-      "Luxury Gwalior Resort",
     ],
-    resorts: [
-      "Gwalior Resort & Spa",
-      "Heritage Gwalior Resort",
-      "Gwalior Adventure Resort",
-    ],
-    lounges: [
-      "Gwalior Sky Lounge",
-      "The Gwalior Lounge",
-      "Gwalior Heritage Cafe",
-    ],
-    restaurants: [
-      "Gwalior Kitchen",
-      "Local Madhya Pradesh Cuisine",
-      "Gwalior Heritage Restaurant",
-      "The Gwalior Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -2222,29 +1484,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Shopping",
       "Nightlife",
       "Island tours",
-    ],,
-    hotels: [
-      "Mumbai Grand Hotel",
-      "The Mumbai Palace",
-      "Mumbai Comfort Inn",
-      "Luxury Mumbai Resort",
     ],
-    resorts: [
-      "Mumbai Resort & Spa",
-      "Heritage Mumbai Resort",
-      "Mumbai Adventure Resort",
-    ],
-    lounges: [
-      "Mumbai Sky Lounge",
-      "The Mumbai Lounge",
-      "Mumbai Heritage Cafe",
-    ],
-    restaurants: [
-      "Mumbai Kitchen",
-      "Local Maharashtra Cuisine",
-      "Mumbai Heritage Restaurant",
-      "The Mumbai Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(600, 500, 250, 400),
       mid: createCostBreakdown(1200, 800, 350, 600),
@@ -2279,29 +1519,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Hill trekking",
       "Temple visits",
       "Spiritual retreats",
-    ],,
-    hotels: [
-      "Pune Grand Hotel",
-      "The Pune Palace",
-      "Pune Comfort Inn",
-      "Luxury Pune Resort",
     ],
-    resorts: [
-      "Pune Resort & Spa",
-      "Heritage Pune Resort",
-      "Pune Adventure Resort",
-    ],
-    lounges: [
-      "Pune Sky Lounge",
-      "The Pune Lounge",
-      "Pune Heritage Cafe",
-    ],
-    restaurants: [
-      "Pune Kitchen",
-      "Local Maharashtra Cuisine",
-      "Pune Heritage Restaurant",
-      "The Pune Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(450, 350, 180, 250),
       mid: createCostBreakdown(900, 600, 280, 450),
@@ -2336,29 +1554,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Fort tours",
       "Archaeological sites",
       "Heritage walks",
-    ],,
-    hotels: [
-      "Aurangabad Grand Hotel",
-      "The Aurangabad Palace",
-      "Aurangabad Comfort Inn",
-      "Luxury Aurangabad Resort",
     ],
-    resorts: [
-      "Aurangabad Resort & Spa",
-      "Heritage Aurangabad Resort",
-      "Aurangabad Adventure Resort",
-    ],
-    lounges: [
-      "Aurangabad Sky Lounge",
-      "The Aurangabad Lounge",
-      "Aurangabad Heritage Cafe",
-    ],
-    restaurants: [
-      "Aurangabad Kitchen",
-      "Local Maharashtra Cuisine",
-      "Aurangabad Heritage Restaurant",
-      "The Aurangabad Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -2395,29 +1591,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Cultural performances",
       "Museum visits",
       "Local markets",
-    ],,
-    hotels: [
-      "Imphal Grand Hotel",
-      "The Imphal Palace",
-      "Imphal Comfort Inn",
-      "Luxury Imphal Resort",
     ],
-    resorts: [
-      "Imphal Resort & Spa",
-      "Heritage Imphal Resort",
-      "Imphal Adventure Resort",
-    ],
-    lounges: [
-      "Imphal Sky Lounge",
-      "The Imphal Lounge",
-      "Imphal Heritage Cafe",
-    ],
-    restaurants: [
-      "Imphal Kitchen",
-      "Local Manipur Cuisine",
-      "Imphal Heritage Restaurant",
-      "The Imphal Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -2454,29 +1628,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Cave exploration",
       "Forest walks",
       "Rain viewing",
-    ],,
-    hotels: [
-      "Cherrapunji Grand Hotel",
-      "The Cherrapunji Palace",
-      "Cherrapunji Comfort Inn",
-      "Luxury Cherrapunji Resort",
     ],
-    resorts: [
-      "Cherrapunji Resort & Spa",
-      "Heritage Cherrapunji Resort",
-      "Cherrapunji Adventure Resort",
-    ],
-    lounges: [
-      "Cherrapunji Sky Lounge",
-      "The Cherrapunji Lounge",
-      "Cherrapunji Heritage Cafe",
-    ],
-    restaurants: [
-      "Cherrapunji Kitchen",
-      "Local Meghalaya Cuisine",
-      "Cherrapunji Heritage Restaurant",
-      "The Cherrapunji Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 350, 150, 220),
       mid: createCostBreakdown(800, 600, 250, 450),
@@ -2513,29 +1665,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Market exploration",
       "Museum visits",
       "Cultural experiences",
-    ],,
-    hotels: [
-      "Aizawl Grand Hotel",
-      "The Aizawl Palace",
-      "Aizawl Comfort Inn",
-      "Luxury Aizawl Resort",
     ],
-    resorts: [
-      "Aizawl Resort & Spa",
-      "Heritage Aizawl Resort",
-      "Aizawl Adventure Resort",
-    ],
-    lounges: [
-      "Aizawl Sky Lounge",
-      "The Aizawl Lounge",
-      "Aizawl Heritage Cafe",
-    ],
-    restaurants: [
-      "Aizawl Kitchen",
-      "Local Mizoram Cuisine",
-      "Aizawl Heritage Restaurant",
-      "The Aizawl Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -2572,29 +1702,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Village exploration",
       "Cultural immersion",
       "Traditional performances",
-    ],,
-    hotels: [
-      "Kohima Grand Hotel",
-      "The Kohima Palace",
-      "Kohima Comfort Inn",
-      "Luxury Kohima Resort",
     ],
-    resorts: [
-      "Kohima Resort & Spa",
-      "Heritage Kohima Resort",
-      "Kohima Adventure Resort",
-    ],
-    lounges: [
-      "Kohima Sky Lounge",
-      "The Kohima Lounge",
-      "Kohima Heritage Cafe",
-    ],
-    restaurants: [
-      "Kohima Kitchen",
-      "Local Nagaland Cuisine",
-      "Kohima Heritage Restaurant",
-      "The Kohima Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -2631,29 +1739,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Museum visits",
       "Cave exploration",
       "Beach relaxation",
-    ],,
-    hotels: [
-      "Bhubaneswar Grand Hotel",
-      "The Bhubaneswar Palace",
-      "Bhubaneswar Comfort Inn",
-      "Luxury Bhubaneswar Resort",
     ],
-    resorts: [
-      "Bhubaneswar Resort & Spa",
-      "Heritage Bhubaneswar Resort",
-      "Bhubaneswar Adventure Resort",
-    ],
-    lounges: [
-      "Bhubaneswar Sky Lounge",
-      "The Bhubaneswar Lounge",
-      "Bhubaneswar Heritage Cafe",
-    ],
-    restaurants: [
-      "Bhubaneswar Kitchen",
-      "Local Odisha Cuisine",
-      "Bhubaneswar Heritage Restaurant",
-      "The Bhubaneswar Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -2688,29 +1774,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Beach relaxation",
       "Lake tours",
       "Art village exploration",
-    ],,
-    hotels: [
-      "Puri Grand Hotel",
-      "The Puri Palace",
-      "Puri Comfort Inn",
-      "Luxury Puri Resort",
     ],
-    resorts: [
-      "Puri Resort & Spa",
-      "Heritage Puri Resort",
-      "Puri Adventure Resort",
-    ],
-    lounges: [
-      "Puri Sky Lounge",
-      "The Puri Lounge",
-      "Puri Heritage Cafe",
-    ],
-    restaurants: [
-      "Puri Kitchen",
-      "Local Odisha Cuisine",
-      "Puri Heritage Restaurant",
-      "The Puri Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -2747,29 +1811,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Border ceremony",
       "Museum exploration",
       "Food tasting",
-    ],,
-    hotels: [
-      "Amritsar Grand Hotel",
-      "The Amritsar Palace",
-      "Amritsar Comfort Inn",
-      "Luxury Amritsar Resort",
     ],
-    resorts: [
-      "Amritsar Resort & Spa",
-      "Heritage Amritsar Resort",
-      "Amritsar Adventure Resort",
-    ],
-    lounges: [
-      "Amritsar Sky Lounge",
-      "The Amritsar Lounge",
-      "Amritsar Heritage Cafe",
-    ],
-    restaurants: [
-      "Amritsar Kitchen",
-      "Local Punjab Cuisine",
-      "Amritsar Heritage Restaurant",
-      "The Amritsar Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 300, 120, 170),
       mid: createCostBreakdown(700, 500, 220, 350),
@@ -2804,29 +1846,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Fort exploration",
       "Shopping",
       "Food experience",
-    ],,
-    hotels: [
-      "Ludhiana Grand Hotel",
-      "The Ludhiana Palace",
-      "Ludhiana Comfort Inn",
-      "Luxury Ludhiana Resort",
     ],
-    resorts: [
-      "Ludhiana Resort & Spa",
-      "Heritage Ludhiana Resort",
-      "Ludhiana Adventure Resort",
-    ],
-    lounges: [
-      "Ludhiana Sky Lounge",
-      "The Ludhiana Lounge",
-      "Ludhiana Heritage Cafe",
-    ],
-    restaurants: [
-      "Ludhiana Kitchen",
-      "Local Punjab Cuisine",
-      "Ludhiana Heritage Restaurant",
-      "The Ludhiana Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -2863,29 +1883,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Market shopping",
       "Heritage walks",
       "Temple visits",
-    ],,
-    hotels: [
-      "Jaipur Grand Hotel",
-      "The Jaipur Palace",
-      "Jaipur Comfort Inn",
-      "Luxury Jaipur Resort",
     ],
-    resorts: [
-      "Jaipur Resort & Spa",
-      "Heritage Jaipur Resort",
-      "Jaipur Adventure Resort",
-    ],
-    lounges: [
-      "Jaipur Sky Lounge",
-      "The Jaipur Lounge",
-      "Jaipur Heritage Cafe",
-    ],
-    restaurants: [
-      "Jaipur Kitchen",
-      "Local Rajasthan Cuisine",
-      "Jaipur Heritage Restaurant",
-      "The Jaipur Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -2920,29 +1918,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Palace exploration",
       "Old city walks",
       "Sunset viewing",
-    ],,
-    hotels: [
-      "Jodhpur Grand Hotel",
-      "The Jodhpur Palace",
-      "Jodhpur Comfort Inn",
-      "Luxury Jodhpur Resort",
     ],
-    resorts: [
-      "Jodhpur Resort & Spa",
-      "Heritage Jodhpur Resort",
-      "Jodhpur Adventure Resort",
-    ],
-    lounges: [
-      "Jodhpur Sky Lounge",
-      "The Jodhpur Lounge",
-      "Jodhpur Heritage Cafe",
-    ],
-    restaurants: [
-      "Jodhpur Kitchen",
-      "Local Rajasthan Cuisine",
-      "Jodhpur Heritage Restaurant",
-      "The Jodhpur Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -2977,29 +1953,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Palace tours",
       "Temple visits",
       "Sunset boating",
-    ],,
-    hotels: [
-      "Udaipur Grand Hotel",
-      "The Udaipur Palace",
-      "Udaipur Comfort Inn",
-      "Luxury Udaipur Resort",
     ],
-    resorts: [
-      "Udaipur Resort & Spa",
-      "Heritage Udaipur Resort",
-      "Udaipur Adventure Resort",
-    ],
-    lounges: [
-      "Udaipur Sky Lounge",
-      "The Udaipur Lounge",
-      "Udaipur Heritage Cafe",
-    ],
-    restaurants: [
-      "Udaipur Kitchen",
-      "Local Rajasthan Cuisine",
-      "Udaipur Heritage Restaurant",
-      "The Udaipur Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 150, 250),
       mid: createCostBreakdown(1000, 600, 250, 450),
@@ -3034,29 +1988,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Temple visits",
       "Desert camping",
       "Spiritual activities",
-    ],,
-    hotels: [
-      "Pushkar Grand Hotel",
-      "The Pushkar Palace",
-      "Pushkar Comfort Inn",
-      "Luxury Pushkar Resort",
     ],
-    resorts: [
-      "Pushkar Resort & Spa",
-      "Heritage Pushkar Resort",
-      "Pushkar Adventure Resort",
-    ],
-    lounges: [
-      "Pushkar Sky Lounge",
-      "The Pushkar Lounge",
-      "Pushkar Heritage Cafe",
-    ],
-    restaurants: [
-      "Pushkar Kitchen",
-      "Local Rajasthan Cuisine",
-      "Pushkar Heritage Restaurant",
-      "The Pushkar Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -3093,29 +2025,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Lake trekking",
       "Mountain views",
       "Spiritual activities",
-    ],,
-    hotels: [
-      "Gangtok Grand Hotel",
-      "The Gangtok Palace",
-      "Gangtok Comfort Inn",
-      "Luxury Gangtok Resort",
     ],
-    resorts: [
-      "Gangtok Resort & Spa",
-      "Heritage Gangtok Resort",
-      "Gangtok Adventure Resort",
-    ],
-    lounges: [
-      "Gangtok Sky Lounge",
-      "The Gangtok Lounge",
-      "Gangtok Heritage Cafe",
-    ],
-    restaurants: [
-      "Gangtok Kitchen",
-      "Local Sikkim Cuisine",
-      "Gangtok Heritage Restaurant",
-      "The Gangtok Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 200, 250),
       mid: createCostBreakdown(1000, 600, 350, 500),
@@ -3150,29 +2060,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Waterfall trekking",
       "Mountain viewing",
       "Photography",
-    ],,
-    hotels: [
-      "Pelling Grand Hotel",
-      "The Pelling Palace",
-      "Pelling Comfort Inn",
-      "Luxury Pelling Resort",
     ],
-    resorts: [
-      "Pelling Resort & Spa",
-      "Heritage Pelling Resort",
-      "Pelling Adventure Resort",
-    ],
-    lounges: [
-      "Pelling Sky Lounge",
-      "The Pelling Lounge",
-      "Pelling Heritage Cafe",
-    ],
-    restaurants: [
-      "Pelling Kitchen",
-      "Local Sikkim Cuisine",
-      "Pelling Heritage Restaurant",
-      "The Pelling Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(450, 300, 150, 220),
       mid: createCostBreakdown(900, 550, 250, 400),
@@ -3209,29 +2097,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Temple visits",
       "Museum tours",
       "Shopping",
-    ],,
-    hotels: [
-      "Chennai Grand Hotel",
-      "The Chennai Palace",
-      "Chennai Comfort Inn",
-      "Luxury Chennai Resort",
     ],
-    resorts: [
-      "Chennai Resort & Spa",
-      "Heritage Chennai Resort",
-      "Chennai Adventure Resort",
-    ],
-    lounges: [
-      "Chennai Sky Lounge",
-      "The Chennai Lounge",
-      "Chennai Heritage Cafe",
-    ],
-    restaurants: [
-      "Chennai Kitchen",
-      "Local Tamil Nadu Cuisine",
-      "Chennai Heritage Restaurant",
-      "The Chennai Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -3266,29 +2132,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Palace exploration",
       "River walks",
       "Local markets",
-    ],,
-    hotels: [
-      "Madurai Grand Hotel",
-      "The Madurai Palace",
-      "Madurai Comfort Inn",
-      "Luxury Madurai Resort",
     ],
-    resorts: [
-      "Madurai Resort & Spa",
-      "Heritage Madurai Resort",
-      "Madurai Adventure Resort",
-    ],
-    lounges: [
-      "Madurai Sky Lounge",
-      "The Madurai Lounge",
-      "Madurai Heritage Cafe",
-    ],
-    restaurants: [
-      "Madurai Kitchen",
-      "Local Tamil Nadu Cuisine",
-      "Madurai Heritage Restaurant",
-      "The Madurai Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -3323,29 +2167,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Garden walks",
       "Peak trekking",
       "Lake boating",
-    ],,
-    hotels: [
-      "Ooty Grand Hotel",
-      "The Ooty Palace",
-      "Ooty Comfort Inn",
-      "Luxury Ooty Resort",
     ],
-    resorts: [
-      "Ooty Resort & Spa",
-      "Heritage Ooty Resort",
-      "Ooty Adventure Resort",
-    ],
-    lounges: [
-      "Ooty Sky Lounge",
-      "The Ooty Lounge",
-      "Ooty Heritage Cafe",
-    ],
-    restaurants: [
-      "Ooty Kitchen",
-      "Local Tamil Nadu Cuisine",
-      "Ooty Heritage Restaurant",
-      "The Ooty Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 150, 250),
       mid: createCostBreakdown(1000, 600, 250, 450),
@@ -3382,29 +2204,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Old city exploration",
       "Temple visits",
       "Food tasting",
-    ],,
-    hotels: [
-      "Hyderabad (Telangana) Grand Hotel",
-      "The Hyderabad (Telangana) Palace",
-      "Hyderabad (Telangana) Comfort Inn",
-      "Luxury Hyderabad (Telangana) Resort",
     ],
-    resorts: [
-      "Hyderabad (Telangana) Resort & Spa",
-      "Heritage Hyderabad (Telangana) Resort",
-      "Hyderabad (Telangana) Adventure Resort",
-    ],
-    lounges: [
-      "Hyderabad (Telangana) Sky Lounge",
-      "The Hyderabad (Telangana) Lounge",
-      "Hyderabad (Telangana) Heritage Cafe",
-    ],
-    restaurants: [
-      "Hyderabad (Telangana) Kitchen",
-      "Local Telangana Cuisine",
-      "Hyderabad (Telangana) Heritage Restaurant",
-      "The Hyderabad (Telangana) Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -3441,29 +2241,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Temple visits",
       "Market exploration",
       "Cultural performances",
-    ],,
-    hotels: [
-      "Agartala Grand Hotel",
-      "The Agartala Palace",
-      "Agartala Comfort Inn",
-      "Luxury Agartala Resort",
     ],
-    resorts: [
-      "Agartala Resort & Spa",
-      "Heritage Agartala Resort",
-      "Agartala Adventure Resort",
-    ],
-    lounges: [
-      "Agartala Sky Lounge",
-      "The Agartala Lounge",
-      "Agartala Heritage Cafe",
-    ],
-    restaurants: [
-      "Agartala Kitchen",
-      "Local Tripura Cuisine",
-      "Agartala Heritage Restaurant",
-      "The Agartala Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -3500,29 +2278,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Fort exploration",
       "Sunrise/sunset viewing",
       "Local shopping",
-    ],,
-    hotels: [
-      "Agra Grand Hotel",
-      "The Agra Palace",
-      "Agra Comfort Inn",
-      "Luxury Agra Resort",
     ],
-    resorts: [
-      "Agra Resort & Spa",
-      "Heritage Agra Resort",
-      "Agra Adventure Resort",
-    ],
-    lounges: [
-      "Agra Sky Lounge",
-      "The Agra Lounge",
-      "Agra Heritage Cafe",
-    ],
-    restaurants: [
-      "Agra Kitchen",
-      "Local Uttar Pradesh Cuisine",
-      "Agra Heritage Restaurant",
-      "The Agra Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -3557,29 +2313,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Boat rides",
       "Temple visits",
       "Spiritual retreats",
-    ],,
-    hotels: [
-      "Varanasi Grand Hotel",
-      "The Varanasi Palace",
-      "Varanasi Comfort Inn",
-      "Luxury Varanasi Resort",
     ],
-    resorts: [
-      "Varanasi Resort & Spa",
-      "Heritage Varanasi Resort",
-      "Varanasi Adventure Resort",
-    ],
-    lounges: [
-      "Varanasi Sky Lounge",
-      "The Varanasi Lounge",
-      "Varanasi Heritage Cafe",
-    ],
-    restaurants: [
-      "Varanasi Kitchen",
-      "Local Uttar Pradesh Cuisine",
-      "Varanasi Heritage Restaurant",
-      "The Varanasi Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(300, 250, 100, 150),
       mid: createCostBreakdown(600, 450, 200, 300),
@@ -3614,29 +2348,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Museum visits",
       "Food tasting",
       "Heritage walks",
-    ],,
-    hotels: [
-      "Lucknow Grand Hotel",
-      "The Lucknow Palace",
-      "Lucknow Comfort Inn",
-      "Luxury Lucknow Resort",
     ],
-    resorts: [
-      "Lucknow Resort & Spa",
-      "Heritage Lucknow Resort",
-      "Lucknow Adventure Resort",
-    ],
-    lounges: [
-      "Lucknow Sky Lounge",
-      "The Lucknow Lounge",
-      "Lucknow Heritage Cafe",
-    ],
-    restaurants: [
-      "Lucknow Kitchen",
-      "Local Uttar Pradesh Cuisine",
-      "Lucknow Heritage Restaurant",
-      "The Lucknow Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -3673,29 +2385,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Meditation",
       "River rafting",
       "Ashram stays",
-    ],,
-    hotels: [
-      "Rishikesh Grand Hotel",
-      "The Rishikesh Palace",
-      "Rishikesh Comfort Inn",
-      "Luxury Rishikesh Resort",
     ],
-    resorts: [
-      "Rishikesh Resort & Spa",
-      "Heritage Rishikesh Resort",
-      "Rishikesh Adventure Resort",
-    ],
-    lounges: [
-      "Rishikesh Sky Lounge",
-      "The Rishikesh Lounge",
-      "Rishikesh Heritage Cafe",
-    ],
-    restaurants: [
-      "Rishikesh Kitchen",
-      "Local Uttarakhand Cuisine",
-      "Rishikesh Heritage Restaurant",
-      "The Rishikesh Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -3730,29 +2420,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Aarti ceremonies",
       "Temple visits",
       "Spiritual immersion",
-    ],,
-    hotels: [
-      "Haridwar Grand Hotel",
-      "The Haridwar Palace",
-      "Haridwar Comfort Inn",
-      "Luxury Haridwar Resort",
     ],
-    resorts: [
-      "Haridwar Resort & Spa",
-      "Heritage Haridwar Resort",
-      "Haridwar Adventure Resort",
-    ],
-    lounges: [
-      "Haridwar Sky Lounge",
-      "The Haridwar Lounge",
-      "Haridwar Heritage Cafe",
-    ],
-    restaurants: [
-      "Haridwar Kitchen",
-      "Local Uttarakhand Cuisine",
-      "Haridwar Heritage Restaurant",
-      "The Haridwar Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(350, 280, 120, 170),
       mid: createCostBreakdown(700, 450, 220, 350),
@@ -3787,29 +2455,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Peak trekking",
       "Shopping on Mall Road",
       "Nature walks",
-    ],,
-    hotels: [
-      "Nainital Grand Hotel",
-      "The Nainital Palace",
-      "Nainital Comfort Inn",
-      "Luxury Nainital Resort",
     ],
-    resorts: [
-      "Nainital Resort & Spa",
-      "Heritage Nainital Resort",
-      "Nainital Adventure Resort",
-    ],
-    lounges: [
-      "Nainital Sky Lounge",
-      "The Nainital Lounge",
-      "Nainital Heritage Cafe",
-    ],
-    restaurants: [
-      "Nainital Kitchen",
-      "Local Uttarakhand Cuisine",
-      "Nainital Heritage Restaurant",
-      "The Nainital Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(450, 300, 150, 220),
       mid: createCostBreakdown(900, 550, 250, 400),
@@ -3846,29 +2492,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Museum tours",
       "Temple visits",
       "River cruises",
-    ],,
-    hotels: [
-      "Kolkata Grand Hotel",
-      "The Kolkata Palace",
-      "Kolkata Comfort Inn",
-      "Luxury Kolkata Resort",
     ],
-    resorts: [
-      "Kolkata Resort & Spa",
-      "Heritage Kolkata Resort",
-      "Kolkata Adventure Resort",
-    ],
-    lounges: [
-      "Kolkata Sky Lounge",
-      "The Kolkata Lounge",
-      "Kolkata Heritage Cafe",
-    ],
-    restaurants: [
-      "Kolkata Kitchen",
-      "Local West Bengal Cuisine",
-      "Kolkata Heritage Restaurant",
-      "The Kolkata Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(400, 300, 150, 200),
       mid: createCostBreakdown(800, 550, 250, 400),
@@ -3903,29 +2527,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Plantation tours",
       "Peak viewing",
       "Trek adventures",
-    ],,
-    hotels: [
-      "Darjeeling Grand Hotel",
-      "The Darjeeling Palace",
-      "Darjeeling Comfort Inn",
-      "Luxury Darjeeling Resort",
     ],
-    resorts: [
-      "Darjeeling Resort & Spa",
-      "Heritage Darjeeling Resort",
-      "Darjeeling Adventure Resort",
-    ],
-    lounges: [
-      "Darjeeling Sky Lounge",
-      "The Darjeeling Lounge",
-      "Darjeeling Heritage Cafe",
-    ],
-    restaurants: [
-      "Darjeeling Kitchen",
-      "Local West Bengal Cuisine",
-      "Darjeeling Heritage Restaurant",
-      "The Darjeeling Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 350, 150, 250),
       mid: createCostBreakdown(1000, 600, 250, 450),
@@ -3963,29 +2565,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Market exploration",
       "Museum visits",
       "Shopping",
-    ],,
-    hotels: [
-      "New Delhi Grand Hotel",
-      "The New Delhi Palace",
-      "New Delhi Comfort Inn",
-      "Luxury New Delhi Resort",
     ],
-    resorts: [
-      "New Delhi Resort & Spa",
-      "Heritage New Delhi Resort",
-      "New Delhi Adventure Resort",
-    ],
-    lounges: [
-      "New Delhi Sky Lounge",
-      "The New Delhi Lounge",
-      "New Delhi Heritage Cafe",
-    ],
-    restaurants: [
-      "New Delhi Kitchen",
-      "Local Delhi Cuisine",
-      "New Delhi Heritage Restaurant",
-      "The New Delhi Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(500, 400, 200, 300),
       mid: createCostBreakdown(1000, 700, 300, 500),
@@ -4022,29 +2602,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "High altitude cycling",
       "Lake exploration",
       "Adventure sports",
-    ],,
-    hotels: [
-      "Leh Grand Hotel",
-      "The Leh Palace",
-      "Leh Comfort Inn",
-      "Luxury Leh Resort",
     ],
-    resorts: [
-      "Leh Resort & Spa",
-      "Heritage Leh Resort",
-      "Leh Adventure Resort",
-    ],
-    lounges: [
-      "Leh Sky Lounge",
-      "The Leh Lounge",
-      "Leh Heritage Cafe",
-    ],
-    restaurants: [
-      "Leh Kitchen",
-      "Local Ladakh Cuisine",
-      "Leh Heritage Restaurant",
-      "The Leh Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(700, 400, 300, 400),
       mid: createCostBreakdown(1300, 700, 450, 700),
@@ -4081,29 +2639,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Ashram visits",
       "Spiritual retreats",
       "Local exploration",
-    ],,
-    hotels: [
-      "Puducherry Grand Hotel",
-      "The Puducherry Palace",
-      "Puducherry Comfort Inn",
-      "Luxury Puducherry Resort",
     ],
-    resorts: [
-      "Puducherry Resort & Spa",
-      "Heritage Puducherry Resort",
-      "Puducherry Adventure Resort",
-    ],
-    lounges: [
-      "Puducherry Sky Lounge",
-      "The Puducherry Lounge",
-      "Puducherry Heritage Cafe",
-    ],
-    restaurants: [
-      "Puducherry Kitchen",
-      "Local Puducherry Cuisine",
-      "Puducherry Heritage Restaurant",
-      "The Puducherry Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(450, 350, 150, 250),
       mid: createCostBreakdown(900, 600, 250, 450),
@@ -4140,29 +2676,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Scuba diving",
       "Beach relaxation",
       "Water sports",
-    ],,
-    hotels: [
-      "Port Blair Grand Hotel",
-      "The Port Blair Palace",
-      "Port Blair Comfort Inn",
-      "Luxury Port Blair Resort",
     ],
-    resorts: [
-      "Port Blair Resort & Spa",
-      "Heritage Port Blair Resort",
-      "Port Blair Adventure Resort",
-    ],
-    lounges: [
-      "Port Blair Sky Lounge",
-      "The Port Blair Lounge",
-      "Port Blair Heritage Cafe",
-    ],
-    restaurants: [
-      "Port Blair Kitchen",
-      "Local Andaman & Nicobar Islands Cuisine",
-      "Port Blair Heritage Restaurant",
-      "The Port Blair Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(800, 500, 250, 400),
       mid: createCostBreakdown(1400, 800, 400, 700),
@@ -4199,29 +2713,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Scuba diving",
       "Beach relaxation",
       "Island tours",
-    ],,
-    hotels: [
-      "Kavarati Grand Hotel",
-      "The Kavarati Palace",
-      "Kavarati Comfort Inn",
-      "Luxury Kavarati Resort",
     ],
-    resorts: [
-      "Kavarati Resort & Spa",
-      "Heritage Kavarati Resort",
-      "Kavarati Adventure Resort",
-    ],
-    lounges: [
-      "Kavarati Sky Lounge",
-      "The Kavarati Lounge",
-      "Kavarati Heritage Cafe",
-    ],
-    restaurants: [
-      "Kavarati Kitchen",
-      "Local Lakshadweep Cuisine",
-      "Kavarati Heritage Restaurant",
-      "The Kavarati Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(900, 600, 300, 400),
       mid: createCostBreakdown(1500, 900, 450, 700),
@@ -4258,29 +2750,7 @@ export const INDIA_DESTINATIONS: City[] = [
       "Fort exploration",
       "Water sports",
       "Local markets",
-    ],,
-    hotels: [
-      "Daman Grand Hotel",
-      "The Daman Palace",
-      "Daman Comfort Inn",
-      "Luxury Daman Resort",
     ],
-    resorts: [
-      "Daman Resort & Spa",
-      "Heritage Daman Resort",
-      "Daman Adventure Resort",
-    ],
-    lounges: [
-      "Daman Sky Lounge",
-      "The Daman Lounge",
-      "Daman Heritage Cafe",
-    ],
-    restaurants: [
-      "Daman Kitchen",
-      "Local Daman & Diu Cuisine",
-      "Daman Heritage Restaurant",
-      "The Daman Dining",
-    ]
     costPerDay: {
       budget: createCostBreakdown(450, 350, 150, 250),
       mid: createCostBreakdown(900, 600, 250, 450),

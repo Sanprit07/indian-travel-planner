@@ -7,7 +7,7 @@ import { DestinationCard } from '@/components/destination-card';
 import { INDIA_DESTINATIONS } from '@/lib/india-destinations';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, MapPin, DollarSign, Users, Compass, Clock, Star } from 'lucide-react';
+import { ArrowRight, MapPin, DollarSign, Users, Compass, Clock, Star, Calendar } from 'lucide-react';
 
 const featuredDestinations = INDIA_DESTINATIONS.slice(0, 6);
 const regions = [
