@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/header';
@@ -12,9 +12,9 @@ import { MapPin, Star, Calendar, DollarSign, Utensils, MapPinIcon, ArrowRight, C
 import { notFound } from 'next/navigation';
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const COST_TIERS = [
@@ -24,7 +24,8 @@ const COST_TIERS = [
 ];
 
 export default function DestinationDetailPage({ params }: Props) {
-  const destination = INDIA_DESTINATIONS.find(d => d.id === params.id);
+  const { id } = use(params);
+  const destination = INDIA_DESTINATIONS.find(d => d.id === id);
   const [selectedTier, setSelectedTier] = useState<'budget' | 'mid' | 'luxury'>('budget');
   const [days, setDays] = useState(5);
 
