@@ -160,6 +160,86 @@ export default function DestinationDetailPage({ params }: Props) {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Hotels */}
+              {destination.hotels && destination.hotels.length > 0 && (
+                <Card className="border-0">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      🏨 Hotels
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {destination.hotels.map((hotel, i) => (
+                        <div key={i} className="p-3 bg-muted/50 rounded-md text-foreground">
+                          {hotel}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Resorts */}
+              {destination.resorts && destination.resorts.length > 0 && (
+                <Card className="border-0">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      🏝️ Resorts
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {destination.resorts.map((resort, i) => (
+                        <div key={i} className="p-3 bg-muted/50 rounded-md text-foreground">
+                          {resort}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Lounges */}
+              {destination.lounges && destination.lounges.length > 0 && (
+                <Card className="border-0">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      🍹 Lounges & Bars
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {destination.lounges.map((lounge, i) => (
+                        <div key={i} className="p-3 bg-muted/50 rounded-md text-foreground">
+                          {lounge}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Restaurants */}
+              {destination.restaurants && destination.restaurants.length > 0 && (
+                <Card className="border-0">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      🍽️ Restaurants
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {destination.restaurants.map((restaurant, i) => (
+                        <div key={i} className="p-3 bg-muted/50 rounded-md text-foreground">
+                          {restaurant}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </div>
 
             {/* Right Column - Cost Tiers */}

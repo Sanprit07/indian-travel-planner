@@ -84,10 +84,10 @@ export default function ExplorePage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-hero py-12 px-4 text-white">
+        <section className="bg-gradient-hero py-16 px-4 text-white">
           <div className="container mx-auto max-w-6xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Explore Indian Destinations</h1>
-            <p className="text-lg text-white/90 max-w-2xl">Discover {INDIA_DESTINATIONS.length}+ amazing places across all Indian states</p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg text-balance">Explore Indian Destinations</h1>
+            <p className="text-xl text-white/95 max-w-2xl drop-shadow-md">Discover {INDIA_DESTINATIONS.length}+ amazing places across all Indian states</p>
           </div>
         </section>
 
