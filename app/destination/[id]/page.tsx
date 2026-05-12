@@ -18,9 +18,9 @@ interface Props {
 }
 
 const COST_TIERS = [
-  { name: 'Budget', key: 'budget', color: 'from-green-600 to-emerald-500', icon: '🏖️' },
-  { name: 'Mid-Range', key: 'mid', color: 'from-blue-600 to-cyan-500', icon: '🏨' },
-  { name: 'Luxury', key: 'luxury', color: 'from-purple-600 to-pink-500', icon: '⭐' },
+  { name: 'Budget', key: 'budget', color: 'from-emerald-600 to-green-500', icon: '💰' },
+  { name: 'Mid-Range', key: 'mid', color: 'from-blue-600 to-blue-500', icon: '🏨' },
+  { name: 'Luxury', key: 'luxury', color: 'from-purple-600 to-purple-500', icon: '👑' },
 ];
 
 export default function DestinationDetailPage({ params }: Props) {

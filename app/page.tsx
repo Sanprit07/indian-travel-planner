@@ -56,16 +56,16 @@ export default function HomePage() {
                 Discover 100+ breathtaking destinations, create personalized itineraries with real-time budgeting, and connect with fellow travelers across India.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-10">
-                <Button asChild size="lg" className="bg-gradient-primary-secondary hover:opacity-90 transition-opacity duration-200 text-primary-foreground font-semibold text-base h-12 px-8 rounded-lg">
+              <div className="flex flex-col sm:flex-row gap-5 justify-center pt-12">
+                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 transition-colors duration-200 text-white font-bold text-base h-14 px-10 rounded-xl shadow-lg">
                   <Link href="/explore">
-                    <Compass className="mr-2 h-5 w-5" />
-                    Explore Now
+                    <Compass className="mr-2.5 h-5 w-5" />
+                    Explore Destinations
                   </Link>
                 </Button>
-                <Button asChild size="lg" className="glass text-white hover:bg-white/20 transition-all duration-200 font-semibold text-base h-12 px-8 rounded-lg">
+                <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 transition-colors duration-200 text-white font-bold text-base h-14 px-10 rounded-xl shadow-lg">
                   <Link href="/itinerary">
-                    <Calendar className="mr-2 h-5 w-5" />
+                    <Calendar className="mr-2.5 h-5 w-5" />
                     Plan Your Trip
                   </Link>
                 </Button>
@@ -90,12 +90,12 @@ export default function HomePage() {
         </section>
 
         {/* Featured Destinations */}
-        <section className="py-20 md:py-32 px-4 bg-background">
+        <section className="py-24 md:py-48 px-4 bg-background">
           <div className="container mx-auto max-w-6xl">
-            <div className="mb-16">
-              <div className="space-y-4 max-w-2xl">
-                <h2 className="text-5xl md:text-6xl font-bold text-foreground tracking-tight">Featured Destinations</h2>
-                <p className="text-lg text-muted-foreground font-light leading-relaxed">
+            <div className="mb-24">
+              <div className="space-y-6 max-w-3xl">
+                <h2 className="text-5xl md:text-7xl font-bold text-foreground tracking-tight">Featured Destinations</h2>
+                <p className="text-xl text-muted-foreground font-normal leading-relaxed">
                   Discover some of India&apos;s most iconic and breathtaking destinations, each offering unique experiences and unforgettable memories.
                 </p>
               </div>
@@ -157,12 +157,12 @@ export default function HomePage() {
         </section>
 
         {/* Regions */}
-        <section className="py-20 md:py-32 px-4 bg-muted/20">
+        <section className="py-24 md:py-48 px-4 bg-muted/20">
           <div className="container mx-auto max-w-6xl">
-            <div className="mb-16">
-              <div className="space-y-4 max-w-2xl">
-                <h2 className="text-5xl md:text-6xl font-bold text-foreground tracking-tight">Explore by Region</h2>
-                <p className="text-lg text-muted-foreground font-light">
+            <div className="mb-24">
+              <div className="space-y-6 max-w-3xl">
+                <h2 className="text-5xl md:text-7xl font-bold text-foreground tracking-tight">Explore by Region</h2>
+                <p className="text-xl text-muted-foreground font-normal">
                   Discover destinations organized by India&apos;s diverse and culturally rich regions.
                 </p>
               </div>
@@ -191,12 +191,12 @@ export default function HomePage() {
         </section>
 
         {/* Features */}
-        <section className="py-20 md:py-32 px-4 bg-background">
+        <section className="py-24 md:py-48 px-4 bg-background">
           <div className="container mx-auto max-w-6xl">
-            <div className="mb-16">
-              <div className="space-y-4 max-w-2xl">
-                <h2 className="text-5xl md:text-6xl font-bold text-foreground tracking-tight">Why Choose TripSync?</h2>
-                <p className="text-lg text-muted-foreground font-light">
+            <div className="mb-24">
+              <div className="space-y-6 max-w-3xl">
+                <h2 className="text-5xl md:text-7xl font-bold text-foreground tracking-tight">Why Choose TripSync?</h2>
+                <p className="text-xl text-muted-foreground font-normal">
                   Everything you need for an exceptional travel experience across India.
                 </p>
               </div>
@@ -254,14 +254,14 @@ export default function HomePage() {
               <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-3xl mx-auto">
                 Join thousands of travelers discovering India&apos;s most beautiful destinations with smart planning tools and a supportive community.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 transition-all duration-200 font-semibold text-base h-12 px-8 rounded-lg">
+              <div className="flex flex-col sm:flex-row gap-5 justify-center pt-8">
+                <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 transition-all duration-200 font-bold text-base h-14 px-10 rounded-lg w-full sm:w-auto">
                   <Link href="/explore">
                     Explore Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2.5 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" className="glass text-white hover:bg-white/20 transition-all duration-200 font-semibold text-base h-12 px-8 rounded-lg">
+                <Button asChild size="lg" className="glass text-white hover:bg-white/20 transition-all duration-200 font-bold text-base h-14 px-10 rounded-lg w-full sm:w-auto">
                   <Link href="/budget">View Budget Options</Link>
                 </Button>
               </div>
