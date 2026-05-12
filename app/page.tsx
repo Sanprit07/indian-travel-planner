@@ -27,41 +27,43 @@ export default function HomePage() {
       <main className="flex-1">
         {/* Hero Section with Background */}
         <section 
-          className="relative py-20 md:py-32 px-4 overflow-hidden"
+          className="relative py-24 md:py-40 lg:py-48 px-4 overflow-hidden"
           style={{
             backgroundImage: 'url(/images/hero-background.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-gradient-overlay"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60"></div>
           
-          <div className="container mx-auto max-w-4xl relative z-10">
-            <div className="text-center space-y-8">
-              <div className="space-y-3">
+          <div className="container mx-auto max-w-5xl relative z-10">
+            <div className="text-center space-y-10">
+              <div className="space-y-4">
                 <div className="inline-block">
-                  <span className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium">
-                    Explore India Like Never Before
+                  <span className="glass px-5 py-2.5 rounded-full text-white text-sm font-medium tracking-wide">
+                    Discover India&apos;s Hidden Gems
                   </span>
                 </div>
               </div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white text-balance leading-tight">
-                Plan Your <span className="text-yellow-300">Perfect</span> Indian Adventure
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white text-balance leading-tight tracking-tight">
+                Your Next
+                <br />
+                <span className="bg-gradient-primary-secondary bg-clip-text text-transparent">Adventure Awaits</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-white/90 text-balance max-w-2xl mx-auto leading-relaxed">
-                Discover 100+ destinations across all Indian states, get real-time budget estimates, create personalized itineraries, and connect with a vibrant community of travelers.
+              <p className="text-xl md:text-2xl text-white/85 text-balance max-w-3xl mx-auto leading-relaxed font-light">
+                Discover 100+ breathtaking destinations, create personalized itineraries with real-time budgeting, and connect with fellow travelers across India.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-                <Button asChild size="lg" className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 font-semibold text-base">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-10">
+                <Button asChild size="lg" className="bg-gradient-primary-secondary hover:opacity-90 transition-opacity duration-200 text-primary-foreground font-semibold text-base h-12 px-8 rounded-lg">
                   <Link href="/explore">
                     <Compass className="mr-2 h-5 w-5" />
-                    Explore Destinations
+                    Explore Now
                   </Link>
                 </Button>
-                <Button asChild size="lg" className="bg-white/20 text-white hover:bg-white/30 border border-white/40 backdrop-blur-sm font-semibold text-base">
+                <Button asChild size="lg" className="glass text-white hover:bg-white/20 transition-all duration-200 font-semibold text-base h-12 px-8 rounded-lg">
                   <Link href="/itinerary">
                     <Calendar className="mr-2 h-5 w-5" />
                     Plan Your Trip
@@ -70,70 +72,71 @@ export default function HomePage() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-12">
-                <div className="text-white">
-                  <div className="text-3xl md:text-4xl font-bold">100+</div>
-                  <div className="text-sm text-white/80">Destinations</div>
-                </div>
-                <div className="text-white">
-                  <div className="text-3xl md:text-4xl font-bold">30</div>
-                  <div className="text-sm text-white/80">Indian States</div>
-                </div>
-                <div className="text-white">
-                  <div className="text-3xl md:text-4xl font-bold">∞</div>
-                  <div className="text-sm text-white/80">Experiences</div>
-                </div>
+              <div className="grid grid-cols-3 gap-8 md:gap-12 pt-16 border-t border-white/20">
+                {[
+                  { number: '100+', label: 'Destinations', icon: '🗺️' },
+                  { number: '30', label: 'Indian States', icon: '🌏' },
+                  { number: '∞', label: 'Experiences', icon: '✨' },
+                ].map((stat, i) => (
+                  <div key={i} className="text-white space-y-2">
+                    <div className="text-3xl">{stat.icon}</div>
+                    <div className="text-4xl md:text-5xl font-bold tracking-tight">{stat.number}</div>
+                    <div className="text-sm text-white/70 font-medium">{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
         {/* Featured Destinations */}
-        <section className="py-16 md:py-24 px-4 bg-background">
+        <section className="py-20 md:py-32 px-4 bg-background">
           <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Featured Destinations</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Explore some of India&apos;s most iconic and beautiful destinations
-              </p>
+            <div className="mb-16">
+              <div className="space-y-4 max-w-2xl">
+                <h2 className="text-5xl md:text-6xl font-bold text-foreground tracking-tight">Featured Destinations</h2>
+                <p className="text-lg text-muted-foreground font-light leading-relaxed">
+                  Discover some of India&apos;s most iconic and breathtaking destinations, each offering unique experiences and unforgettable memories.
+                </p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
               {featuredDestinations.map((destination) => (
                 <Link key={destination.id} href={`/destination/${destination.id}`}>
-                  <Card className="overflow-hidden hover-lift transition-all duration-300 h-full hover:shadow-xl border-0">
-                    <div className="relative h-48 bg-muted overflow-hidden">
+                  <Card className="overflow-hidden hover-lift h-full border-0 bg-card hover:shadow-premium-xl transition-all duration-300">
+                    <div className="relative h-56 bg-muted overflow-hidden">
                       <Image
                         src={destination.image}
                         alt={destination.name}
                         fill
-                        className="object-cover hover:scale-110 transition-transform duration-300"
+                        className="object-cover hover:scale-105 transition-transform duration-500"
                         onError={(e) => {
                           e.currentTarget.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&h=300&fit=crop';
                         }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                      <div className="absolute top-3 right-3 bg-yellow-400 text-gray-900 rounded-full p-2">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                      <div className="absolute top-4 right-4 bg-gradient-primary-secondary text-white rounded-full p-2 shadow-premium">
                         <Star className="h-4 w-4 fill-current" />
                       </div>
                     </div>
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-xl text-foreground">{destination.name}</CardTitle>
-                      <CardDescription className="text-sm flex items-center gap-1">
-                        <MapPin className="h-3 w-3" />
+                    <CardHeader className="pb-3 pt-6">
+                      <CardTitle className="text-2xl text-foreground font-bold">{destination.name}</CardTitle>
+                      <CardDescription className="text-sm flex items-center gap-1.5 text-muted-foreground">
+                        <MapPin className="h-3.5 w-3.5 text-primary" />
                         {destination.state}
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-3">
-                      <p className="text-sm text-muted-foreground line-clamp-2">{destination.description}</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1">
+                    <CardContent className="space-y-4">
+                      <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{destination.description}</p>
+                      <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                        <div className="flex items-center gap-1.5">
                           <DollarSign className="h-4 w-4 text-primary" />
-                          <span className="text-sm font-semibold">₹{destination.costPerDay.budget.total}/day</span>
+                          <span className="text-sm font-semibold text-foreground">₹{destination.costPerDay.budget.total}/day</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                          <span className="text-sm font-medium">{destination.rating}</span>
+                        <div className="flex items-center gap-1.5">
+                          <Star className="h-4 w-4 text-accent fill-accent" />
+                          <span className="text-sm font-semibold">{destination.rating}</span>
                         </div>
                       </div>
                     </CardContent>
@@ -142,8 +145,8 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="flex justify-center mt-10">
-              <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/5">
+            <div className="flex justify-center mt-14">
+              <Button asChild size="lg" className="bg-gradient-primary-secondary hover:opacity-90 transition-opacity duration-200 text-primary-foreground font-semibold h-12 px-8 rounded-lg">
                 <Link href="/explore">
                   View All Destinations
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -154,30 +157,32 @@ export default function HomePage() {
         </section>
 
         {/* Regions */}
-        <section className="py-16 md:py-24 px-4 bg-muted/30">
+        <section className="py-20 md:py-32 px-4 bg-muted/20">
           <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Explore by Region</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Discover destinations organized by India&apos;s diverse regions
-              </p>
+            <div className="mb-16">
+              <div className="space-y-4 max-w-2xl">
+                <h2 className="text-5xl md:text-6xl font-bold text-foreground tracking-tight">Explore by Region</h2>
+                <p className="text-lg text-muted-foreground font-light">
+                  Discover destinations organized by India&apos;s diverse and culturally rich regions.
+                </p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
               {regions.map((region, index) => (
                 <button
                   key={index}
                   onClick={() => {
-                    // Navigate to explore page with region filter
                     window.location.href = `/explore?region=${region.name}`;
                   }}
-                  className={`relative h-40 rounded-xl overflow-hidden group cursor-pointer`}
+                  className={`relative h-48 rounded-xl overflow-hidden group cursor-pointer hover-lift transition-all duration-300`}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${region.color} opacity-90 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
-                    <span className="text-5xl mb-3">{region.icon}</span>
-                    <h3 className="text-2xl font-bold text-center">{region.name}</h3>
-                    <p className="text-sm mt-2 text-white/80">{region.destinations} destinations</p>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${region.color} opacity-85 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center space-y-3">
+                    <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{region.icon}</span>
+                    <h3 className="text-2xl font-bold tracking-tight">{region.name}</h3>
+                    <p className="text-sm text-white/80 font-medium">{region.destinations} destinations</p>
                   </div>
                 </button>
               ))}
@@ -186,45 +191,47 @@ export default function HomePage() {
         </section>
 
         {/* Features */}
-        <section className="py-16 md:py-24 px-4 bg-background">
+        <section className="py-20 md:py-32 px-4 bg-background">
           <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Why Choose TripSync?</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Everything you need for an amazing travel experience
-              </p>
+            <div className="mb-16">
+              <div className="space-y-4 max-w-2xl">
+                <h2 className="text-5xl md:text-6xl font-bold text-foreground tracking-tight">Why Choose TripSync?</h2>
+                <p className="text-lg text-muted-foreground font-light">
+                  Everything you need for an exceptional travel experience across India.
+                </p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
               {[
                 {
-                  icon: <MapPin className="h-8 w-8" />,
+                  icon: <MapPin className="h-10 w-10" />,
                   title: 'Comprehensive Coverage',
                   description: '100+ destinations across all 30 Indian states and union territories'
                 },
                 {
-                  icon: <DollarSign className="h-8 w-8" />,
+                  icon: <DollarSign className="h-10 w-10" />,
                   title: 'Smart Budget Planning',
                   description: 'Get real-time cost estimates with budget, mid-range & luxury options'
                 },
                 {
-                  icon: <Calendar className="h-8 w-8" />,
+                  icon: <Calendar className="h-10 w-10" />,
                   title: 'Smart Itineraries',
                   description: 'Create and customize multi-destination trips with cost tracking'
                 },
                 {
-                  icon: <Users className="h-8 w-8" />,
+                  icon: <Users className="h-10 w-10" />,
                   title: 'Community Reviews',
                   description: 'Connect with travelers and discover authentic local experiences'
                 },
               ].map((feature, index) => (
-                <Card key={index} className="border-0 bg-gradient-to-br from-primary/5 to-accent/5 hover:shadow-lg transition-shadow duration-300">
+                <Card key={index} className="border border-border/50 bg-card hover-lift hover:shadow-premium-lg transition-all duration-300">
                   <CardHeader>
-                    <div className="text-primary mb-3">{feature.icon}</div>
-                    <CardTitle className="text-lg">{feature.title}</CardTitle>
+                    <div className="text-primary mb-4 p-3 bg-primary/10 rounded-lg w-fit">{feature.icon}</div>
+                    <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -233,24 +240,31 @@ export default function HomePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 md:py-24 px-4 bg-gradient-hero">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-balance">
-              Ready to Explore India?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto text-balance">
-              Start planning your perfect Indian adventure today. Discover destinations, create itineraries, and connect with fellow travelers.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-100 font-semibold text-base">
-                <Link href="/explore">
-                  Start Exploring
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                <Link href="/budget">Calculate Budget</Link>
-              </Button>
+        <section className="py-24 md:py-40 px-4 bg-gradient-primary-secondary relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="container mx-auto max-w-4xl text-center relative z-10">
+            <div className="space-y-10">
+              <h2 className="text-5xl md:text-6xl font-bold text-white text-balance tracking-tight leading-tight">
+                Ready to Start Your Adventure?
+              </h2>
+              <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-3xl mx-auto">
+                Join thousands of travelers discovering India&apos;s most beautiful destinations with smart planning tools and a supportive community.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 transition-all duration-200 font-semibold text-base h-12 px-8 rounded-lg">
+                  <Link href="/explore">
+                    Explore Now
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" className="glass text-white hover:bg-white/20 transition-all duration-200 font-semibold text-base h-12 px-8 rounded-lg">
+                  <Link href="/budget">View Budget Options</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
