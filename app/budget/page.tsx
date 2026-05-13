@@ -24,12 +24,12 @@ const CATEGORIES = [
 ];
 
 const COLORS = [
-  '#10B981', // Emerald - Budget
-  '#3B82F6', // Blue - Moderate
-  '#9333EA', // Purple - Luxury
-  '#F59E0B', // Amber - Premium
-  '#EF4444', // Red - VIP
-  '#6366F1'  // Indigo - Seasonal
+  '#4F8FBA', // Primary teal
+  '#A67C28', // Saffron-ish
+  '#6B5B95', // Purple
+  '#88B0D3', // Light blue
+  '#C7A574', // Tan
+  '#A8A8A8'  // Gray
 ];
 
 export default function BudgetPage() {

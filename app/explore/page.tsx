@@ -84,53 +84,43 @@ export default function ExplorePage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-primary-secondary py-20 md:py-28 px-4 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-white rounded-full blur-3xl"></div>
-          </div>
-          <div className="container mx-auto max-w-6xl relative z-10">
-            <div className="space-y-6">
-              <h1 className="text-6xl md:text-7xl font-bold text-white text-balance tracking-tight leading-tight">
-                Discover India&apos;s <br />
-                <span className="text-white/90">Best Destinations</span>
-              </h1>
-              <p className="text-xl text-white/85 max-w-3xl font-light leading-relaxed">
-                Browse {INDIA_DESTINATIONS.length}+ curated destinations across all Indian states. Find your perfect getaway with advanced filters and personalized recommendations.
-              </p>
-            </div>
+        <section className="bg-gradient-hero py-16 px-4 text-white">
+          <div className="container mx-auto max-w-6xl">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg text-balance">Explore Indian Destinations</h1>
+            <p className="text-xl text-white/95 max-w-2xl drop-shadow-md">Discover {INDIA_DESTINATIONS.length}+ amazing places across all Indian states</p>
           </div>
         </section>
 
-        <div className="container mx-auto max-w-6xl px-4 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
+        <div className="container mx-auto max-w-6xl px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Filters Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-20 space-y-6 bg-card p-7 rounded-xl border border-border/50 shadow-premium">
+              <div className="sticky top-4 space-y-6 bg-card p-6 rounded-lg border">
                 <div>
-                  <h3 className="font-bold text-lg text-foreground">Refine Search</h3>
+                  <h3 className="font-bold text-lg mb-4 text-foreground">Filters</h3>
                 </div>
 
                 {/* Search */}
-                <div className="space-y-3">
-                  <label className="text-sm font-semibold text-foreground">Search Destination</label>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Search</label>
                   <div className="relative">
-                    <Search className="absolute left-3.5 top-3 h-4 w-4 text-muted-foreground" />
+                    <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                     <Input
-                      placeholder="Search..."
+                      placeholder="Search destinations..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 bg-input border-border/50 text-sm"
+                      className="pl-9 bg-background"
                     />
                   </div>
                 </div>
 
                 {/* State Filter */}
-                <div className="space-y-3">
-                  <label className="text-sm font-semibold text-foreground">State</label>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">State</label>
                   <select
                     value={selectedState}
                     onChange={(e) => setSelectedState(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-border/50 bg-input text-sm font-medium transition-colors focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                   >
                     <option value="">All States</option>
                     {STATES.map(state => (
@@ -140,12 +130,12 @@ export default function ExplorePage() {
                 </div>
 
                 {/* Budget Filter */}
-                <div className="space-y-3">
-                  <label className="text-sm font-semibold text-foreground">Budget Range</label>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Budget</label>
                   <select
                     value={selectedCostRange}
                     onChange={(e) => setSelectedCostRange(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-border/50 bg-input text-sm font-medium transition-colors focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                   >
                     <option value="">All Budgets</option>
                     {COST_RANGES.map(range => (
@@ -155,9 +145,9 @@ export default function ExplorePage() {
                 </div>
 
                 {/* Rating Filter */}
-                <div className="space-y-3">
-                  <label className="text-sm font-semibold text-foreground">Minimum Rating</label>
-                  <div className="flex items-center gap-3">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Minimum Rating</label>
+                  <div className="flex items-center gap-2">
                     <input
                       type="range"
                       min="0"
@@ -165,22 +155,19 @@ export default function ExplorePage() {
                       step="0.5"
                       value={minRating}
                       onChange={(e) => setMinRating(parseFloat(e.target.value))}
-                      className="flex-1 h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                      className="flex-1"
                     />
-                    <span className="text-sm font-semibold min-w-12 text-center">
-                      {minRating > 0 && `${minRating.toFixed(1)}★`}
-                      {minRating === 0 && 'Any'}
-                    </span>
+                    <span className="text-sm font-medium min-w-8">{minRating.toFixed(1)}</span>
                   </div>
                 </div>
 
                 {/* Sort */}
-                <div className="space-y-3">
-                  <label className="text-sm font-semibold text-foreground">Sort By</label>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Sort By</label>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-border/50 bg-input text-sm font-medium transition-colors focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                   >
                     <option value="rating">Highest Rated</option>
                     <option value="reviews">Most Reviews</option>
@@ -199,9 +186,9 @@ export default function ExplorePage() {
                       setMinRating(0);
                     }}
                     variant="outline"
-                    className="w-full border-border/50 hover:bg-muted text-sm font-medium transition-colors"
+                    className="w-full"
                   >
-                    Clear All Filters
+                    Clear Filters
                   </Button>
                 )}
               </div>
@@ -209,17 +196,17 @@ export default function ExplorePage() {
 
             {/* Results */}
             <div className="lg:col-span-3">
-              <div className="mb-8 flex items-center justify-between">
-                <h2 className="text-3xl font-bold text-foreground">
-                  {filteredDestinations.length} Destination{filteredDestinations.length !== 1 ? 's' : ''} Found
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="text-2xl font-bold text-foreground">
+                  {filteredDestinations.length} Destinations Found
                 </h2>
               </div>
 
               {filteredDestinations.length === 0 ? (
-                <Card className="border border-border/50 bg-card/50">
-                  <CardContent className="py-16 text-center">
-                    <div className="text-6xl mb-6">🗺️</div>
-                    <p className="text-muted-foreground text-lg mb-6 font-light">No destinations found matching your filters.</p>
+                <Card className="border-0">
+                  <CardContent className="py-12 text-center">
+                    <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4 opacity-50" />
+                    <p className="text-muted-foreground text-lg mb-4">No destinations found matching your filters.</p>
                     <Button
                       onClick={() => {
                         setSearchTerm('');
@@ -227,65 +214,65 @@ export default function ExplorePage() {
                         setSelectedCostRange('');
                         setMinRating(0);
                       }}
-                      className="bg-gradient-primary-secondary hover:opacity-90 text-primary-foreground font-semibold"
+                      variant="outline"
                     >
-                      Clear All Filters
+                      Clear Filters
                     </Button>
                   </CardContent>
                 </Card>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {filteredDestinations.map(destination => (
                     <Link key={destination.id} href={`/destination/${destination.id}`}>
-                      <Card className="overflow-hidden hover-lift transition-all duration-300 h-full hover:shadow-premium-xl border border-border/50 cursor-pointer bg-card">
-                        <div className="relative h-64 bg-muted overflow-hidden">
+                      <Card className="overflow-hidden hover-lift transition-all duration-300 h-full hover:shadow-xl border-0 cursor-pointer">
+                        <div className="relative h-56 bg-muted overflow-hidden">
                           <Image
                             src={destination.image}
                             alt={destination.name}
                             fill
-                            className="object-cover hover:scale-105 transition-transform duration-500"
+                            className="object-cover hover:scale-110 transition-transform duration-300"
                             onError={(e) => {
                               e.currentTarget.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=500&h=300&fit=crop';
                             }}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                           
                           {/* Tags */}
-                          <div className="absolute top-4 right-4 flex gap-2">
-                            <Badge className="bg-gradient-primary-secondary text-white hover:opacity-90 shadow-premium">
-                              <Star className="h-3 w-3 mr-1.5 fill-current" />
+                          <div className="absolute top-3 right-3 flex gap-2">
+                            <Badge className="bg-yellow-400 text-gray-900 hover:bg-yellow-300">
+                              <Star className="h-3 w-3 mr-1 fill-current" />
                               {destination.rating}
                             </Badge>
                           </div>
 
                           {/* Title Overlay */}
-                          <div className="absolute bottom-4 left-4 right-4">
-                            <h3 className="text-2xl font-bold text-white text-balance leading-tight mb-1">{destination.name}</h3>
-                            <p className="text-sm text-white/85 flex items-center gap-1.5">
-                              <MapPin className="h-3.5 w-3.5 text-primary" />
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-xl font-bold text-white text-balance">{destination.name}</h3>
+                            <p className="text-sm text-white/80 flex items-center gap-1">
+                              <MapPin className="h-3 w-3" />
                               {destination.state}
                             </p>
                           </div>
                         </div>
 
-                        <CardContent className="p-5 space-y-4">
-                          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{destination.description}</p>
+                        <CardContent className="p-4 space-y-3">
+                          <p className="text-sm text-muted-foreground line-clamp-2">{destination.description}</p>
                           
                           {/* Price and Info */}
-                          <div className="flex items-center justify-between pt-3 border-t border-border/50">
+                          <div className="flex items-center justify-between pt-2 border-t border-border">
                             <div className="flex items-center gap-2">
                               <DollarSign className="h-4 w-4 text-primary" />
-                              <span className="text-sm font-semibold text-foreground">₹{destination.costPerDay.budget.total}/day</span>
+                              <span className="text-sm font-semibold">₹{destination.costPerDay.budget.total}/day</span>
                             </div>
-                            <div className="flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
-                              <Calendar className="h-3.5 w-3.5" />
+                            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                              <Calendar className="h-3 w-3" />
                               {destination.bestTime.split(',')[0]}
                             </div>
                           </div>
 
                           {/* Reviews */}
-                          <div className="text-xs text-muted-foreground font-medium">
-                            {destination.reviews} traveler{destination.reviews !== 1 ? 's' : ''} reviewed
+                          <div className="text-xs text-muted-foreground">
+                            {destination.reviews} reviews
                           </div>
                         </CardContent>
                       </Card>

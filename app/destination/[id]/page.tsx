@@ -18,9 +18,9 @@ interface Props {
 }
 
 const COST_TIERS = [
-  { name: 'Budget', key: 'budget', color: 'from-emerald-600 to-green-500', icon: '💰' },
-  { name: 'Mid-Range', key: 'mid', color: 'from-blue-600 to-blue-500', icon: '🏨' },
-  { name: 'Luxury', key: 'luxury', color: 'from-purple-600 to-purple-500', icon: '👑' },
+  { name: 'Budget', key: 'budget', color: 'from-green-600 to-emerald-500', icon: '🏖️' },
+  { name: 'Mid-Range', key: 'mid', color: 'from-blue-600 to-cyan-500', icon: '🏨' },
+  { name: 'Luxury', key: 'luxury', color: 'from-purple-600 to-pink-500', icon: '⭐' },
 ];
 
 export default function DestinationDetailPage({ params }: Props) {
@@ -42,7 +42,7 @@ export default function DestinationDetailPage({ params }: Props) {
 
       <main className="flex-1">
         {/* Hero Section with Image */}
-        <section className="relative h-96 md:h-[480px] bg-muted overflow-hidden">
+        <section className="relative h-96 bg-muted overflow-hidden">
           <Image
             src={destination.image}
             alt={destination.name}
@@ -53,23 +53,23 @@ export default function DestinationDetailPage({ params }: Props) {
               e.currentTarget.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=400&fit=crop';
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
 
           {/* Content Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
             <div className="container mx-auto max-w-6xl">
-              <div className="flex items-center gap-3 mb-6">
-                <Badge className="bg-gradient-primary-secondary text-white hover:opacity-90 shadow-premium">
-                  <Star className="h-3.5 w-3.5 mr-1.5 fill-current" />
+              <div className="flex items-center gap-2 mb-4">
+                <Badge className="bg-yellow-400 text-gray-900 hover:bg-yellow-300">
+                  <Star className="h-3 w-3 mr-1 fill-current" />
                   {destination.rating}
                 </Badge>
-                <Badge variant="outline" className="glass text-white border-white/40 text-sm font-medium">
+                <Badge variant="outline" className="bg-white/20 text-white border-white/40">
                   {destination.reviews} reviews
                 </Badge>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-balance text-white tracking-tight leading-tight">{destination.name}</h1>
-              <div className="flex items-center gap-2.5 text-lg text-white/90 font-light">
-                <MapPin className="h-5 w-5 text-accent" />
+              <h1 className="text-4xl md:text-5xl font-bold mb-2 text-balance">{destination.name}</h1>
+              <div className="flex items-center gap-2 text-lg text-white/90">
+                <MapPin className="h-5 w-5" />
                 {destination.state}
               </div>
             </div>
@@ -77,51 +77,47 @@ export default function DestinationDetailPage({ params }: Props) {
         </section>
 
         {/* Main Content */}
-        <div className="container mx-auto max-w-6xl px-4 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="container mx-auto max-w-6xl px-4 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Column - Info */}
-            <div className="lg:col-span-2 space-y-10">
+            <div className="lg:col-span-2 space-y-8">
               {/* Description */}
-              <Card className="border border-border/50 bg-card hover:shadow-premium-lg transition-shadow duration-300">
+              <Card className="border-0 bg-gradient-to-br from-primary/5 to-accent/5">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold">About This Destination</CardTitle>
+                  <CardTitle>About</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-foreground text-lg leading-relaxed font-light">{destination.description}</p>
+                  <p className="text-foreground text-lg leading-relaxed">{destination.description}</p>
                 </CardContent>
               </Card>
 
               {/* Best Time to Visit */}
-              <Card className="border border-border/50 bg-card hover:shadow-premium-lg transition-shadow duration-300">
+              <Card className="border-0">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-2xl font-bold">
-                    <div className="p-2.5 bg-primary/10 rounded-lg">
-                      <Calendar className="h-6 w-6 text-primary" />
-                    </div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-primary" />
                     Best Time to Visit
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-foreground text-lg font-light">{destination.bestTime}</p>
+                  <p className="text-foreground">{destination.bestTime}</p>
                 </CardContent>
               </Card>
 
               {/* Top Attractions */}
-              <Card className="border border-border/50 bg-card hover:shadow-premium-lg transition-shadow duration-300">
+              <Card className="border-0">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-2xl font-bold">
-                    <div className="p-2.5 bg-primary/10 rounded-lg">
-                      <MapPinIcon className="h-6 w-6 text-primary" />
-                    </div>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPinIcon className="h-5 w-5 text-primary" />
                     Top Attractions
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {destination.attractions.map((attraction, i) => (
-                      <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-muted/40 hover:bg-muted/60 transition-colors duration-200">
-                        <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5 font-bold" />
-                        <span className="text-foreground font-medium">{attraction}</span>
+                      <div key={i} className="flex items-start gap-3">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-foreground">{attraction}</span>
                       </div>
                     ))}
                   </div>
@@ -129,21 +125,19 @@ export default function DestinationDetailPage({ params }: Props) {
               </Card>
 
               {/* Local Food */}
-              <Card className="border border-border/50 bg-card hover:shadow-premium-lg transition-shadow duration-300">
+              <Card className="border-0">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-2xl font-bold">
-                    <div className="p-2.5 bg-primary/10 rounded-lg">
-                      <Utensils className="h-6 w-6 text-primary" />
-                    </div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Utensils className="h-5 w-5 text-primary" />
                     Must Try Food
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {destination.food.map((food, i) => (
-                      <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-muted/40 hover:bg-muted/60 transition-colors duration-200">
-                        <span className="text-2xl">🍽️</span>
-                        <span className="text-foreground font-medium">{food}</span>
+                      <div key={i} className="flex items-start gap-3">
+                        <span className="text-lg">🍽️</span>
+                        <span className="text-foreground">{food}</span>
                       </div>
                     ))}
                   </div>
@@ -151,16 +145,16 @@ export default function DestinationDetailPage({ params }: Props) {
               </Card>
 
               {/* Experiences */}
-              <Card className="border border-border/50 bg-card hover:shadow-premium-lg transition-shadow duration-300">
+              <Card className="border-0">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold">Experiences</CardTitle>
+                  <CardTitle>Experiences</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {destination.experiences.map((exp, i) => (
-                      <div key={i} className="flex items-center gap-3 p-3 bg-muted/40 hover:bg-muted/60 transition-colors duration-200 rounded-lg">
-                        <span className="text-xl">✨</span>
-                        <span className="text-foreground font-medium">{exp}</span>
+                      <div key={i} className="flex items-center gap-3 p-2 bg-muted/50 rounded-md">
+                        <span className="text-lg">✨</span>
+                        <span className="text-foreground">{exp}</span>
                       </div>
                     ))}
                   </div>
